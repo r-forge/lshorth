@@ -1,0 +1,192 @@
+%%!TEX root = ../tex/lshorth.tex
+%$Header: /u/math/j40/cvsroot/lectures/src/Rstuff/lshorth/Rnw/lshorth.Rnw.tex,v 1.5 2007/08/12 11:56:08 j40 Exp $
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+%
+%  Adjust the path names below and run the R command to process this file
+%
+% lshorth implementation
+%
+% oldoptions<-options(width=72,prompt="  ", continue="  "); setwd("/users/gs/documents/lectures/src/rstuff/lshorth/rnw_out/");Sweave(file= "../rnw/lshorth.rnw.tex", output="lshorth.tex",debug=TRUE,eps=FALSE);options(oldoptions)
+%
+% package.skeleton(name="lshorth",list=c("lshorth","plot.lshorth"))
+%
+%* Run R CMD check to check the package tarball.
+%* Run R CMD build to build the package tarball.
+% \usepackage{Sweave} %Don' use it. We define our own styles.
+%:R: shorthp
+
+This is the implementation base for \ircode{lshorth}.
+The technical note is kept in a separate document.
+\section{lshorth}
+First catch the special case $p \leq \frac{1}{count}$ where $lenvec_i=0$. For other cases the $p$-shorth interval has the form $[x_{(j)}, x_{(j + \Delta)}]$. We build 
+$$
+lenvec_j = x_{(j+\Delta  )} -   x_{(j)}
+$$
+
+Function \irfunx{lshorth} returns the length of $p$-shorth as a matrix in a structure element \ircode{lshorth} . Entry [p,i] gives the length of the $psteps_p$ shorth containing $x_{(i)}$.
+<<>>=
+options(keep.source=TRUE)
+lshorth<- function(x,probs=NULL, plot=TRUE,...){
+    if (!is.numeric(x))
+	stop("'x' must be numeric")
+	
+    if (length(x)<1)
+	stop("'x' must have positive length")
+	count <- length(x)	
+	# if (is.null(psteps)) {psteps <- 2*ceiling(log2(length(x))+1)}
+	
+		if (is.null(probs)){
+			ppx <-ceiling(log2(count) / 2) 
+			probs <- c( 1/2^(ppx:1),1-1/2^(2:ppx))
+			ppx<-NULL
+			}
+	# if (is.null(probs)) {probs <- (1:psteps)/(psteps + 1)}
+    
+    xname <- paste(deparse(substitute(x), 60), collapse="\n")
+    xsort <- sort(x)
+	
+	shorthm<-matrix(ncol=length(probs),nrow=length(x))
+	for (px in 1:length(probs)){
+		#cat("shorthm ",px,probs[px],"\n")
+	#shorthm[,px]<- shorthp(x,probs[px])
+	{
+    #cat("Enter shorthp","\n")
+    count <- length(x)
+    # Catch special case $probs \leq \frac{1}{count}
+    if (probs[px]<=1/count)  {
+        shorthvec <- rep.int(0, count)
+    }
+    else {
+    #The $p$-shorth interval has the form $[j, j + \Delta]$. We build 
+    #lenvec_j = x_{(j+\Delta :n )} -   x_{(j:n)}
+    jDelta <- ceiling(probs[px] * count) - 1
+    jmax <- count - jDelta
+    lenvec <- xsort[-(1:(jDelta))] - xsort[-((count - jDelta + 1):count)]
+    # cat("lenvec\n");print(lenvec)
+   
+    shorthvec <-vector(mode="numeric",count)
+    # special case i==1. This is the start of the iteration
+    minlenj <- 1
+    shorthvec[1] <- minlen <- lenvec[1]
+     #cat(i,jmin,jmax,minlenj,shorthvec[i],"\n")
+    # general case
+    for (i in 2:count) {
+        jmin <- i - jDelta
+        if (jmin < 1) {
+            jmin <- 1
+        }
+        if (i + jDelta > count) {
+             minlenj <- jmin - 1 + which.min(lenvec[jmin:(count - jDelta)])
+        }
+        else {
+           #cat("nice cases \n")
+            if (minlenj < jmin) {
+               #cat("old min too small \n")
+                minlenj <- jmin - 1 + which.min(lenvec[jmin:i])
+            }
+            else {
+               #cat("old min in range. default:keep\n")
+                if (lenvec[i] < minlen) {
+                  minlenj <- i
+                 }
+            }
+        }
+        shorthvec[i] <- minlen  <- lenvec[minlenj]
+        #cat(i,jmin,minlenj,shorthvec[i],"\n")
+    } #for i
+    } # if (probs<=1/count) else
+    #return(shorthvec)
+    shorthm[,px]<-shorthvec
+} #shorthp
+
+	}
+	shorthm <- structure(list(x=xsort, xname=xname, lshorth = shorthm, probs=probs), class="lshorth")
+	if (plot) {plot(shorthm, probs=probs, xlab=xname,...)}
+	invisible(shorthm)
+	}
+@
+\section{plot.lshorth}
+The plotting function may be improved. 
+
+\begin{itemize}
+\item So far, the shorth length axis points downward: small shorth length corresponds to high density. With this orientation, the shorth plot can be compared to a density plot.
+
+\item The plot is currently scaled to the empirical shorth range.
+
+\item A visual feedback for the boundary effects should be given, e.g. trim shorth where $x_{(i)}$ is too near to the boundary of the $x$ range.
+
+\item Clean up calling convention. Make reusable.
+ 
+\end{itemize}
+
+%:R:plot.lshorth
+<<>>=
+
+plot.lshorth <- function(x, y, 
+		probs=(1:psteps)/(psteps+1), 
+		psteps=9,
+		main="Shorth", xlab=NULL, 
+		ylab=NULL,legend=TRUE, ...)
+{
+	lshorthx <- x #fix me
+	shorthm <- t(lshorthx$lshorth)
+	if (is.null(xlab)) {
+        xlab <- x$xname
+    }
+	if (is.null(ylab)) {
+		ylab <- "std lshorth"
+	}
+	
+	shorthl <-min (lshorth(x=lshorthx$x,0.5,plot=FALSE)$lshorth)# the length of the shorth
+	shorthmy <- shorthm/shorthl
+	shorthmy <- (max(shorthmy)-shorthmy)
+	
+	ylim <- c(0,max(shorthmy)*1.1)
+	if (is.na(ylim[2])) {
+		ylim[2]<-0
+	}
+	
+	plot.new()
+	plot.window(xlim=range(lshorthx$x[is.finite(lshorthx$x)]),ylim=ylim, ...)
+	axis(1)
+	axis(2)
+	title(main=main, xlab=xlab, ylab=ylab,)
+	rug(lshorthx$x)
+	
+	lwd <- ceiling(6*(0.5-abs(probs-0.5)))
+	
+	for (px in 1:length(probs)){
+	#	lwd <- ceiling(6*(0.5-abs(probs[px]-0.5)))
+		lines(lshorthx$x,shorthmy[px,],lwd=lwd[px])
+	}
+	if (legend){
+	temp <- legend("topright", legend = rep(" ",length(probs)),
+               text.width = strwidth("0.000"),
+               lwd = lwd, xjust = 1, yjust = 1,
+               title = "Coverage")
+	text(temp$rect$left + temp$rect$w, temp$text$y,
+     format(probs,digits=3), pos=2)
+	}
+	invisible(shorthm)
+}
+
+@
+\ifx\private\undefined%
+\else
+\noindent
+{\tiny%
+\verb+$Source: /u/math/j40/cvsroot/lectures/src/Rstuff/lshorth/Rnw/lshorth.Rnw.tex,v $+\\
+\verb+$Revision: 1.5 $+\\
+\verb+$Date: 2007/08/12 11:56:08 $+\\
+\verb+$Name:  $+\\
+\verb+$Author: j40 $+\\
+\begin{verbatim}
+$Log: lshorth.Rnw.tex,v $
+Revision 1.5  2007/08/12 11:56:08  j40
+ylim  in plot modified
+
+\end{verbatim}
+}
+\fi
+\endinput
+
