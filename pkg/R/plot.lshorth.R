@@ -1,25 +1,52 @@
-plot.lshorth <- function(x, y, 
-		probs=(1:psteps)/(psteps+1), 
-		psteps=9,
+plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
+		probs=NULL, 
 		main="Shorth", xlab=NULL, 
-		ylab=NULL,legend=TRUE, ...)
+		ylab=NULL,legend=TRUE, rescale="std", ...)
 {
+	stopifnot(inherits(x,"lshorth"))
+	if (missing(ylim))  ylim <-NULL
 	lshorthx <- x #fix me
+	probs <- lshorthx$probs
 	shorthm <- t(lshorthx$lshorth)
 	if (is.null(xlab)) {
         xlab <- x$xname
     }
-	if (is.null(ylab)) {
-		ylab <- "lshorth"
+	if (is.null(rescale)) rsc <- "none" else{
+	rsc<-match.arg(tolower(rescale),c("none","std","inv"))
 	}
-	
-	shorthl <-min (lshorth(x=lshorthx$x,0.5,plot=FALSE)$lshorth)# the length of the shorth
-	shorthmy <- shorthm/shorthl
+	if (rsc=="std"){
+		
+	    shorthl <-min (lshorth(x=lshorthx$x,0.5,plot=FALSE)$lshorth)
+	    # the length of the shorth
+	    shorthmy <- shorthm/shorthl
+	    shorthmy <- (max(shorthmy)-shorthmy)
+	    if (is.null(ylab)) {
+		    ylab <- "std lshorth"
+		    if(is.null(ylim)){
 	ylim <- c(0,max(shorthmy)*1.1)
 	if (is.na(ylim[2])) {
 		ylim[2]<-0
+	}}
+	    }
+	 }
+     if (rsc=="inv") {
+        shorthmy<- 1/shorthm
+		if (is.null(ylab)) {
+		    ylab <- "1/lshorth"
+	    }
+	 }
+     if (rsc=="none") {
+     	shorthmy<- shorthm
+		if (is.null(ylab)) {
+		    ylab <- "lshorth"
+	    }
+    }
+
+	if (is.null(ylab)) {
+		ylab <- "lshorth"
 	}
-	shorthmy <- (max(shorthmy)-shorthmy)
+
+	if (is.null(ylim)) ylim<-range(shorthmy,finite=TRUE)
 	plot.new()
 	plot.window(xlim=range(lshorthx$x[is.finite(lshorthx$x)]),ylim=ylim, ...)
 	axis(1)

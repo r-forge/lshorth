@@ -1,5 +1,5 @@
 `lshorth` <-
-function (x, probs = NULL,  plot = TRUE) 
+function (x, probs = NULL,  plot = TRUE, ...) 
 {
     if (!is.numeric(x)) 
         stop("'x' must be numeric")
@@ -57,10 +57,10 @@ function (x, probs = NULL,  plot = TRUE)
             shorthm[, px] <- shorthvec
         }
     }
-    shorthm <- structure(list(x = xsort, lshorth = -shorthm, 
+    shorthm <- structure(list(x = xsort, lshorth = shorthm, 
         probs = probs), class = "lshorth")
     if (plot) {
-        plot(shorthm, probs=probs, xlab = xname, ylab = "Std Shorth")
+        plot(shorthm, probs=probs, xlab = xname, ...)
     }
     invisible(shorthm)
 }

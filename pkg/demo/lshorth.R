@@ -1,6 +1,6 @@
 opar <- par(ask = dev.interactive(orNone = TRUE))
-get(getOption("device"))(width=12,height=8)
-oldpar<-par(mfrow=c(2,4))
+#get(getOption("device"))(width=12,height=12)
+#oldpar<-par(mfrow=c(2,4))
 lshorth(runif(25))
 lshorth(runif(50))
 lshorth(runif(100))
@@ -9,9 +9,11 @@ lshorth(rnorm(25))
 lshorth(rnorm(50))
 lshorth(rnorm(100))
 lshorth(rnorm(200))
-par(oldpar)
+#par(oldpar)
 
-dev.off()
+#dev.off()
+#get(getOption("device"))(width=6,height=6)
+
 # note: these are time series data
 lshorth(AirPassengers)
 

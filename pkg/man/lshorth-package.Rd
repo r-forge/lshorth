@@ -9,8 +9,8 @@
 \tabular{ll}{
 Package: \tab lshorth\cr
 Type: \tab Package\cr
-Version: \tab 0.1-2\cr
-Date: \tab 2007-08-08\cr
+Version: \tab 0.1-3\cr
+Date: \tab 2007-08-28\cr
 License: \tab LGPL\cr
 }
 The p-shorth at x is the shortest interval containing the point x and a proportion p of the data. The location of the p-shorth has slow convergence

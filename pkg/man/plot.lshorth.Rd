@@ -4,21 +4,24 @@
 \title{ plot.lshorth }
 \description{Plot local shorth length}
 \usage{
-plot.lshorth(x, y, probs = (1:psteps)/(psteps + 1), psteps = 9,
-main = "Shorth", xlab=NULL, 
-		ylab=NULL,legend=TRUE, ...)
+plot.lshorth(x, y, xlim = NULL, ylim = NULL,
+        probs = NULL,
+        main = "Shorth", xlab=NULL, 
+		ylab=NULL,legend=TRUE,
+		rescale="std", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ an object of class lshorth }
-  \item{y}{ an object of class lshorth }
-  \item{probs}{ coverage probabilities }
+  \item{x}{ an object of class lshorth, or a vector of x values }
+  \item{y}{ a matrix of shorth length, if x is not of class lshorth -- not yet implemented}
+  \item{xlim}{passed to plot}
+  \item{ylim}{passed to plot}
+  \item{probs}{ coverage probabilities, if x is not of class lshorth -- not yet implemented}
   \item{main}{ passed as argument to  \code{title}}
-  \item{psteps}{ number of probability levels }
   \item{xlab}{ a label for the \code{x} axis }
   \item{ylab}{ a label for the \code{y} axis }
   \item{legend}{ logical. If TRUE, a legend is included. }
-  
+  \item{rescale} {rescaling method:one of "none","std","inv"}
   \item{\dots}{ additional arguments passed to plot }
 }
 \details{
