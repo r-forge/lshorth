@@ -1,4 +1,4 @@
-`lshorth` <-
+lshorth <-
 function (x, probs = NULL,  plot = TRUE, ...) 
 {
     if (!is.numeric(x)) 
@@ -15,7 +15,7 @@ function (x, probs = NULL,  plot = TRUE, ...)
 			}
 	# if (is.null(probs)) {probs <- (1:psteps)/(psteps + 1)}
     
-    xname <- paste(deparse(substitute(x), 500), collapse = "\n")
+    xname <- paste(deparse(substitute(x), 50), collapse = "\n")
     shorthm <- matrix(ncol = length(probs), nrow = length(x))
     xsort <- sort(x)
    for (px in 1:length(probs)) {
@@ -58,9 +58,10 @@ function (x, probs = NULL,  plot = TRUE, ...)
         }
     }
     shorthm <- structure(list(x = xsort, lshorth = shorthm, 
-        probs = probs), class = "lshorth")
+        probs = probs, xname=xname), class = "lshorth")
     if (plot) {
-        plot(shorthm, probs=probs, xlab = xname, ...)
+#        plot(shorthm, probs=probs, xlab = paste(xname,", n=",length(x), sep=""), ...)
+        plot(shorthm, probs=probs,  ...)
     }
     invisible(shorthm)
 }

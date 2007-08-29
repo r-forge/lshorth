@@ -9,7 +9,11 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 	probs <- lshorthx$probs
 	shorthm <- t(lshorthx$lshorth)
 	if (is.null(xlab)) {
-        xlab <- x$xname
+		if (!is.null(x$xname)){
+            xlab <- paste(x$xname,", n=",length(lshorthx$x), sep="")
+        } else{xlab <- paste(deparse(substitute(x), 50), 
+        	", n=",length(lshorthx$x), collapse = "\n", sep="")}
+        
     }
 	if (is.null(rescale)) rsc <- "none" else{
 	rsc<-match.arg(tolower(rescale),c("none","std","inv"))
@@ -70,3 +74,4 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 	}
 	invisible(shorthm)
 }
+
