@@ -16,7 +16,7 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
         
     }
 	if (is.null(rescale)) rsc <- "none" else{
-	rsc<-match.arg(tolower(rescale),c("none","std","inv"))
+	rsc<-match.arg(tolower(rescale),c("none","std","inv","neg"))
 	}
 	if (rsc=="std"){
 		
@@ -39,6 +39,13 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 		    ylab <- "1/lshorth"
 	    }
 	 }
+	 if (rsc=="neg") {
+        shorthmy<- -shorthm
+		if (is.null(ylab)) {
+		    ylab <- "-lshorth"
+	    }
+	 }
+
      if (rsc=="none") {
      	shorthmy<- shorthm
 		if (is.null(ylab)) {
