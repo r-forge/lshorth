@@ -60,7 +60,9 @@ function (x, probs = NULL,  plot = TRUE, ...)
     shorthm <- structure(list(x = xsort, lshorth = shorthm, 
         probs = probs, xname=xname), class = "lshorth")
     if (plot) {
-#        plot(shorthm, probs=probs, xlab = paste(xname,", n=",length(x), sep=""), ...)
+#        plot(shorthm, probs=probs, 
+         xlab = paste(xname,", n=",length(x), sep=""), 
+         ...)
         plot(shorthm, probs=probs,  ...)
     }
     invisible(shorthm)

@@ -38,12 +38,14 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 		if (is.null(ylab)) {
 		    ylab <- "1/lshorth"
 	    }
+	    if (is.null(ylim)) {ylim<-range(shorthmy,finite=TRUE);ylim[1]<-0}
 	 }
 	 if (rsc=="neg") {
         shorthmy<- -shorthm
 		if (is.null(ylab)) {
 		    ylab <- "-lshorth"
 	    }
+	    if (is.null(ylim)){ylim<-range(shorthmy,finite=TRUE);ylim[2]<-0}
 	 }
 
      if (rsc=="none") {
@@ -51,6 +53,7 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 		if (is.null(ylab)) {
 		    ylab <- "lshorth"
 	    }
+	    if (is.null(ylim)) {ylim<-range(shorthmy,finite=TRUE);ylim[1]<-0}
     }
 
 	if (is.null(ylab)) {
