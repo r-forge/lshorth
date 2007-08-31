@@ -1,7 +1,9 @@
 plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 		probs=NULL, 
-		main="Shorth", xlab=NULL, 
-		ylab=NULL,legend=TRUE, rescale="std", ...)
+		main="Shorth", 
+		xlab=NULL, 
+		ylab=NULL,
+		legend=TRUE, rescale="std", ...)
 {
 	stopifnot(inherits(x,"lshorth"))
 	if (missing(ylim))  ylim <-NULL
@@ -23,11 +25,11 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 	    shorthl <-min (lshorth(x=lshorthx$x,0.5,plot=FALSE)$lshorth)
 	    # the length of the shorth
 	    shorthmy <- shorthm/shorthl
-	    shorthmy <- (max(shorthmy)-shorthmy)
+	    
 	    if (is.null(ylab)) {
 		    ylab <- "std lshorth"
 		    if(is.null(ylim)){
-	ylim <- c(0,max(shorthmy)*1.1)
+	ylim <- c(max(shorthmy)*1.1,0)
 	if (is.na(ylim[2])) {
 		ylim[2]<-0
 	}}
@@ -38,14 +40,14 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 		if (is.null(ylab)) {
 		    ylab <- "1/lshorth"
 	    }
-	    if (is.null(ylim)) {ylim<-range(shorthmy,finite=TRUE);ylim[1]<-0}
+	    if (is.null(ylim)) {ylim<-1.1*range(shorthmy,finite=TRUE);ylim[1]<-0}
 	 }
 	 if (rsc=="neg") {
-        shorthmy<- -shorthm
+        shorthmy<- shorthm
 		if (is.null(ylab)) {
-		    ylab <- "-lshorth"
+		    ylab <- "lshorth"
 	    }
-	    if (is.null(ylim)){ylim<-range(shorthmy,finite=TRUE);ylim[2]<-0}
+	    if (is.null(ylim)){ylim<-c(1.1*range(shorthmy,finite=TRUE)[2],0)}
 	 }
 
      if (rsc=="none") {

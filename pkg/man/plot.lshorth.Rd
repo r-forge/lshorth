@@ -21,7 +21,7 @@ plot.lshorth(x, y, xlim = NULL, ylim = NULL,
   \item{xlab}{ a label for the \code{x} axis }
   \item{ylab}{ a label for the \code{y} axis }
   \item{legend}{ logical. If TRUE, a legend is included. }
-  \item{rescale} {rescaling method:one of "none","std","inv"}
+  \item{rescale} {rescaling method:one of "none","neg","std","inv"}
   \item{\dots}{ additional arguments passed to plot }
 }
 \details{

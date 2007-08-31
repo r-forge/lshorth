@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{Length of the Shorth}
 \description{
-For each data point, calculate the lenght of the shortest interval containing the point and covering a fraction \code{p} of the data.}
+For each data point, calculate the length of the shortest interval containing the point and covering a fraction \code{p} of the data.}
 \usage{
 lshorth(x, probs = NULL, plot = TRUE, ...)
 }
