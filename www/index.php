@@ -43,8 +43,7 @@ echo $contents; } ?>
 
 <!-- end of project description -->
 
-<p> No content added. </p>
-
+<strong>To install this package directly within R type <code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org")</code></strong>		<td nowrap="nowrap" valign="top" width="20%">
 <p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
 
 </body>
