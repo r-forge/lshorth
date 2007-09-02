@@ -42,13 +42,15 @@ fclose($handle);
 echo $contents; } ?>
 <p>
 Technical notes with statistical background information will be installed as doc/TheShorthPlot.pdf or can be accessed 
-<a href="http://lshorth/r-forge.r-project.org/pkg/inst/doc/TheShorthPlot.pdf">from rforge</a>.
+<a href="http://lshorth.r-forge.r-project.org/pkg/inst/doc/TheShorthPlot.pdf">from rforge</a>.
 </p>
 
 <!-- end of project description -->
 <p>
-<strong>To install this package directly within R type <code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org")</code></strong></p>
-<p><strong>To install the recent package from source directly within R type <code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org",type="source")</code></p>
+<strong>To install this package directly within R type </strong><br>
+&nbsp;&nbsp;&nbsp;<code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org")</code></p>
+<p><strong>To install the recent package from source directly within R type </strong><br>
+&nbsp;&nbsp;&nbsp;<code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org",type="source")</code></p>
 		<td nowrap="nowrap" valign="top" width="20%">
 <p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
 
