@@ -42,7 +42,7 @@ fclose($handle);
 echo $contents; } ?>
 <p>
 Technical notes with statistical background information will be installed as doc/TheShorthPlot.pdf or can be accessed 
-<a href="http://lshorth.r-forge.r-project.org/pkg/inst/doc/TheShorthPlot.pdf">from rforge</a>.
+<a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">from rforge</a>.
 </p>
 
 <!-- end of project description -->
