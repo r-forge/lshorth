@@ -54,8 +54,8 @@ Technical notes with statistical background information are in
 </dl>
 
 
-&nbsp;&nbsp;&nbsp;<a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">TheShorthPlot.pdf</>.
-They will be installed as doc/TheShorthPlot.pdf.
+&nbsp;&nbsp;&nbsp;<a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">TheShorthPlot.pdf</a>.
+The technical notes will be installed as doc/TheShorthPlot.pdf along with the package.
 </p>
 <p>
 See also:

@@ -24,6 +24,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <body leftmargin="0" topmargin="0" link="#0076d5" marginheight="0" marginwidth="0" text="#000000" vlink="#6a76d5">
     <!--Top fragment-->
 
+<!-- line 1: logo & search -->
 <table border="0" cellpadding="0" cellspacing="0" width="100%"><!-- table 1 --><tbody>
 	<tr><td width="40">&nbsp;</td>
       
@@ -36,7 +37,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
          <div align="center">
            
 	<form action="/search/" method="get">
-	<table border="0" cellpadding="0" cellspacing="0">
+	<table border="0" cellpadding="0" cellspacing="0"><!--search -->
 	<tbody><tr><td>
 	<div style="font-size: smaller;" align="center"><select name="type_of_search">
 		<option value="full">Search the entire project</option>
@@ -51,11 +52,21 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 	<td>&nbsp;</td><td><input name="Search" value="Search" type="submit"></td>
 	<td width="10">&nbsp;</td>
 	<td><b><a href="http://r-forge.r-project.org/search/advanced_search.php?group_id=54"> Advanced search</a></b></td>
-	</tr></tbody></table>
+	</tr></tbody></table><!--search -->
 	</form>          
 	
 	</div>
        </td>
+        <td class="normal" align="right" nowrap="nowrap" valign="middle">
+          <div align="right">
+            
+            <p><strong><a href="http://r-forge.r-project.org/account/logout.php">Log Out</a></strong><br>
+
+             <strong><a href="http://r-forge.r-project.org/account/">My Account</a></strong></p>
+                      </div>
+        </td>
+
+        <td width="40">&nbsp;</td>
 
 	</tr>
 </tbody></table><!-- table 1 -->
@@ -116,10 +127,8 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <!-- Inner Tabs / Shell -->
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%"><!-- table 8 -->
-
-  <tbody><tr>
+ <tbody><tr>
     <td>&nbsp;</td>
-
     <td>
 
 <!-- start tabs -->
@@ -136,28 +145,9 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 </tbody></table> <!-- table 9 -->
 
 <!-- end tabs -->
-</td>
-
-    <td>&nbsp;</td>
-  </tr>
-
-
-  <tr>
-    <td><img alt="alt" src="R-Forge_%20lshorth_%20Project%20Info_files/clear.png" height="1" width="10"></td>
-
-    <td valign="top" width="99%">
-<table border="0" width="100%"><!-- table 10 -->
-<tbody><tr>
-<td valign="top" width="80%">
-<p>Distribution
-diagnostics based on the lenght of the shorth, the shortest interval
-containing a specified fraction of the distribution. The diagnostics
-can be used to detect qualitative features, such as the modality or
-skewness of a distribution.</p><a href="http://r-forge.r-project.org/scm/?group_id=54"><img src="R-Forge_%20lshorth_%20Project%20Info_files/downloadbar.gif" alt="DOWNLOAD" border="0"></a><br>
-</td>
-<td nowrap="nowrap" valign="top" width="20%">
-
-
+</td></tr>
+</tbody><!-- table 8 --></table>
+</tbody><!-- table 2 --></table>
 
 
 <!-- get project title  -->
@@ -194,8 +184,8 @@ See also:
 <dt> G. Sawitzki: <ahref="http://statlab.uni-heidelberg.de/reports/by.series/report.08.pdf">DiagnosticPlots for One-Dimensional Data.</a> </dt><dd>in: Computational Statistics. Papers collected on the Occasion of the25th Conference on Statistical Computing at Schloss Reisensburg.(Edited by P.Dirschedl &amp; R.Ostermann for the Working Groups ... ...) Heidelberg, Physica, 1994, ISBN 3-7908-0813-x, p. 237-258. </dd>
 </dl>
 <br>
-</p><td nowrap="nowrap" valign="top" width="20%">
-<p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
+</p>
+<p>The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
 
 </body>
 </html>
