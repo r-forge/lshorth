@@ -40,18 +40,30 @@ while (!feof($handle)) {
 }
 fclose($handle);
 echo $contents; } ?>
-<p>
-Technical notes with statistical background information will be installed as doc/TheShorthPlot.pdf or can be accessed 
-<a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">from rforge</a>.
-</p>
-
 <!-- end of project description -->
 <p>
 <strong>To install this package directly within R type </strong><br>
 &nbsp;&nbsp;&nbsp;<code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org")</code></p>
 <p><strong>To install the recent package from source directly within R type </strong><br>
 &nbsp;&nbsp;&nbsp;<code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org",type="source")</code></p>
-		<td nowrap="nowrap" valign="top" width="20%">
+
+<p>
+Technical notes with statistical background information are in
+<dl>
+  <dt> G. Sawitzki: <a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">The Shorth Plot.</a> </dt>  <dd>Technical notes. StatLab Heidelberg 1992 (rev. 2007).</dd>
+</dl>
+
+
+&nbsp;&nbsp;&nbsp;<a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">TheShorthPlot.pdf</>.
+They will be installed as doc/TheShorthPlot.pdf.
+</p>
+<p>
+See also:
+<dl>
+  <dt> G. Sawitzki: <a href="http://statlab.uni-heidelberg.de/reports/by.series/report.08.pdf">DiagnosticPlots for One-Dimensional Data.</a> </dt>  <dd>in: Computational Statistics. Papers collected on the Occasion of the25th Conference on Statistical Computing at Schloss Reisensburg.(Edited by P.Dirschedl &amp; R.Ostermann for the Working Groups ... ...) Heidelberg, Physica, 1994, ISBN 3-7908-0813-x, p. 237-258. </dd>
+</dl>
+<br>
+</p>		<td nowrap="nowrap" valign="top" width="20%">
 <p> The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
 
 </body>
