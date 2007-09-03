@@ -175,13 +175,13 @@ Technical notes with statistical background information are in
 </dl>
 
 
-&nbsp;&nbsp;&nbsp;<a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">TheShorthPlot.pdf</>.
+&nbsp;&nbsp;&nbsp;<a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">TheShorthPlot.pdf</a>.
 They will be installed as doc/TheShorthPlot.pdf.
 </p>
 <p>
 See also:
 <dl>
-<dt> G. Sawitzki: <ahref="http://statlab.uni-heidelberg.de/reports/by.series/report.08.pdf">DiagnosticPlots for One-Dimensional Data.</a> </dt><dd>in: Computational Statistics. Papers collected on the Occasion of the25th Conference on Statistical Computing at Schloss Reisensburg.(Edited by P.Dirschedl &amp; R.Ostermann for the Working Groups ... ...) Heidelberg, Physica, 1994, ISBN 3-7908-0813-x, p. 237-258. </dd>
+<dt> G. Sawitzki: <ahref="http://statlab.uni-heidelberg.de/reports/by.series/report.08.pdf">DiagnosticPlots for One-Dimensional Data.</a> </dt><dd>in: Computational Statistics. Papers collected on the Occasion of the</br>25th Conference on Statistical Computing at Schloss Reisensburg.</br>(Edited by P.Dirschedl &amp; R.Ostermann for the Working Groups ... ...)</br> Heidelberg, Physica, 1994, ISBN 3-7908-0813-x, p. 237-258. </dd>
 </dl>
 <br>
 </p>
