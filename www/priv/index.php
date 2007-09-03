@@ -16,7 +16,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en   ">
 
   <head>
-  	<meta http-equiv="refresh" content="5; URL=http://lshorth.r-forge.r-project.org/">
+  	<meta http-equiv="refresh" content="0; URL=http://lshorth.r-forge.r-project.org/">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo $group_name; ?></title>
 	<link href="<?php echo $themeroot; ?>styles/estilo1.css" rel="stylesheet" type="text/css" />
