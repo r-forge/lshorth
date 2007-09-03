@@ -120,7 +120,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 
 <tr>
 <!-- Outer body row -->
-<td><img alt="alt" src="R-Forge_%20lshorth_%20Project%20Info_files/clear.png" height="1" width="10"></td>
+<td>&nbsp;</td>
 
 
 <td colspan="3" valign="top" width="99%">
@@ -171,12 +171,12 @@ echo $contents; } ?>
 <p>
 Technical notes with statistical background information are in
 <dl>
-<dt> G. Sawitzki: <a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">The Shorth Plot.</a> </dt><dd>Technical notes. StatLab Heidelberg 1992 (rev. 2007).</dd>
+<dt> G. Sawitzki: <a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">The Shorth Plot.</a> </dt><dd>Technical notes. StatLab Heidelberg 1992 (rev. 2007).</br>
+The technical notes will be installed as doc/TheShorthPlot.pdf along with the package.</dd>
 </dl>
 
 
-&nbsp;&nbsp;&nbsp;<a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">TheShorthPlot.pdf</a>.
-They will be installed as doc/TheShorthPlot.pdf.
+
 </p>
 <p>
 See also:
