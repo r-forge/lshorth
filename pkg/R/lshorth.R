@@ -1,9 +1,14 @@
 lshorth <-
-function (x, probs = NULL,  plot = TRUE, ...) 
+function (x, probs = NULL,  plot = TRUE, na.rm=FALSE, ...) 
 {
     if (!is.numeric(x)) 
         stop("'x' must be numeric")
-	
+    xname <- paste(deparse(substitute(x), 50), collapse = "\n")
+    # name must be set before removin NAs 
+
+	if (na.rm) {x <- x[is.finite(x)]} else {
+		if ( any(!is.finite(x))) stop("'x' contains infinite or missing values")}
+
     if (length(x)<1)
 	    stop("'x' must have positive length")
 	count <- length(x)
@@ -12,10 +17,9 @@ function (x, probs = NULL,  plot = TRUE, ...)
 		if (is.null(probs)){
 			ppx <-ceiling(log2(count) / 2) 
 			probs <- c( 1/2^(ppx:1),1-1/2^(2:ppx))
-			}
+			} else {if (!is.numeric(probs)) stop("'probs' must be numeric")}
 	# if (is.null(probs)) {probs <- (1:psteps)/(psteps + 1)}
     
-    xname <- paste(deparse(substitute(x), 50), collapse = "\n")
     shorthm <- matrix(ncol = length(probs), nrow = length(x))
     xsort <- sort(x)
    for (px in 1:length(probs)) {
