@@ -7,7 +7,9 @@
 plot.lshorth(x, y, xlim = NULL, ylim = NULL,
         probs = NULL,
         main = "Shorth", xlab=NULL, 
-		ylab=NULL,legend=TRUE,
+		ylab=NULL,
+		legend=TRUE,
+		showrug=TRUE,
 		rescale="std", ...)
 }
 %- maybe also 'usage' for other objects documented here.
@@ -21,6 +23,7 @@ plot.lshorth(x, y, xlim = NULL, ylim = NULL,
   \item{xlab}{ a label for the \code{x} axis }
   \item{ylab}{ a label for the \code{y} axis }
   \item{legend}{ logical. If TRUE, a legend is included. }
+  \item{showrug}{ logical. If TRUE, a \code{rug} is included. }
   \item{rescale} {rescaling method:one of "none","neg","std","inv"}
   \item{\dots}{ additional arguments passed to plot }
 }

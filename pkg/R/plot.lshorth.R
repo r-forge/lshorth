@@ -3,7 +3,9 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 		main="Shorth", 
 		xlab=NULL, 
 		ylab=NULL,
-		legend=TRUE, rescale="std", ...)
+		legend=TRUE, 
+		showrug=TRUE,
+		rescale="std", ...)
 {
 	stopifnot(inherits(x,"lshorth"))
 	if (missing(ylim))  ylim <-NULL
@@ -63,12 +65,15 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 	}
 
 	if (is.null(ylim)) ylim<-range(shorthmy,finite=TRUE)
+	if (is.null(xlim)) xlim<-range(lshorthx$x[is.finite(lshorthx$x)])
+	
 	plot.new()
 	plot.window(xlim=range(lshorthx$x[is.finite(lshorthx$x)]),ylim=ylim, ...)
 	axis(1)
 	axis(2)
 	title(main=main, xlab=xlab, ylab=ylab,)
-	rug(lshorthx$x)
+	
+	if (showrug) rug(lshorthx$x)
 	
 	lwd <- ceiling(6*(0.5-abs(probs-0.5)))
 	
