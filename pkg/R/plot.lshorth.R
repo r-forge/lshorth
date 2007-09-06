@@ -3,8 +3,8 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 		main="Shorth", 
 		xlab=NULL, 
 		ylab=NULL,
-		legend=TRUE, 
-		showrug=TRUE,
+		legend="topright", 
+		rug=TRUE,
 		rescale="std", ...)
 {
 	stopifnot(inherits(x,"lshorth"))
@@ -71,19 +71,19 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 	plot.window(xlim=range(lshorthx$x[is.finite(lshorthx$x)]),ylim=ylim, ...)
 	axis(1)
 	axis(2)
-	title(main=main, xlab=xlab, ylab=ylab,)
+	title(main=main, xlab=xlab, ylab=ylab)
 	
-	if (showrug) rug(lshorthx$x)
+	if (rug) rug(lshorthx$x)
 	
 	lwd <- ceiling(6*(0.5-abs(probs-0.5)))
 	
 	for (px in 1:length(probs)){
 	#	lwd <- ceiling(6*(0.5-abs(probs[px]-0.5)))
-		lines(lshorthx$x,shorthmy[px,],lwd=lwd[px])
+		lines(lshorthx$x,shorthmy[px,],lwd=lwd[px],...)
 	}
-	if (legend){
-	temp <- legend("topright", legend = rep(" ",length(probs)),
-               text.width = strwidth("1,000,000"),
+	if (!is.null(legend)){
+	temp <- legend(legend, legend = rep(" ",length(probs)),
+               text.width = strwidth("0.0000"),
                lwd = lwd, xjust = 1, yjust = 1,
                title = "Coverage")
 	text(temp$rect$left + temp$rect$w, temp$text$y,
