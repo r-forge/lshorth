@@ -3,9 +3,10 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 		main="Shorth", 
 		xlab=NULL, 
 		ylab=NULL,
+		frame.plot=TRUE,
 		legend="topright", 
 		rug=TRUE,
-		rescale="std", ...)
+		rescale="neg", ...)
 {
 	stopifnot(inherits(x,"lshorth"))
 	if (missing(ylim))  ylim <-NULL
@@ -72,7 +73,7 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 	axis(1)
 	axis(2)
 	title(main=main, xlab=xlab, ylab=ylab)
-	
+	if (frame.plot)box(...)
 	if (rug) rug(lshorthx$x)
 	
 	lwd <- ceiling(6*(0.5-abs(probs-0.5)))
@@ -85,7 +86,8 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 	temp <- legend(legend, legend = rep(" ",length(probs)),
                text.width = strwidth("0.0000"),
                lwd = lwd, xjust = 1, yjust = 1,
-               title = "Coverage")
+               title = expression(Coverage *" "* alpha),
+               inset=0.05)
 	text(temp$rect$left + temp$rect$w, temp$text$y,
      format(probs,digits=3), pos=2)
 	}

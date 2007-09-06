@@ -1,17 +1,20 @@
 %!TEX root = ../tex/TheShorthPlot.tex
-%$Header: /u/math/j40/cvsroot/lectures/src/shorth/Rnw/lshorth.Rnw.tex,v 1.6 2007/08/31 15:24:37 j40 Exp $
+%$Header: /u/math/j40/cvsroot/lectures/src/shorth/Rnw/lshorth.Rnw.tex,v 1.8 2007/09/04 14:58:01 j40 Exp $
 % -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
 %
 %         TheShorthPlot
 %  
 %  Adjust the path names below and run the R command to process this file
 %
+% enc<-options(encoding="MacRoman")
+% #enc<-options(encoding="")
+% oldoptions<-options(width=72,prompt=">", continue="+")
 % oldoptions<-options(width=72,prompt="  ", continue="  "); setwd("/users/gs/documents/lectures/src/shorth/tex/"); Sweave(file= "../Rnw/lshorth.Rnw.tex", output="TheShorthPlot.tex", debug=TRUE, eps=FALSE);options(oldoptions)
 %
 
 %global flags for conditional builds
 %:flags
-%\def\private{true}% comment out for public version
+\def\private{true}% comment out for public version
 \def\solutions{true}% comment out to hide solutions
 \def\usehyperref{true}% comment out to skip hyperref
 
@@ -93,7 +96,7 @@ The shorth can be defined as a functional which has an immediate empirical versi
 \section{Distribution Diagnostics}
 Exploratory diagnostics is one of the basic tasks in data analysis. Graphical displays are essential tools. If the task can be narrowed down, specialised displays may be available. For example, if there is a model distribution $F$ to be compared with, from a mathematical point of view the empirical distribution $F_n$ is a key instrument, and its graphical representation such as 
 $PP$-plots $$x \mapsto \left(F \left(x\right),F_n \left(x \right) \right)$$ 
-or $QQ$-plots $$\alpha \mapsto \left(F^{-1} \left(\alpha\right),F_n^{-1} \left(\alpha \right) \right)$$ are tools of first choice. If we consider  the overall scale and location, box \& whisker plots are a valuable tool. This tool loses its sharpness for large data sets, as the rules for identifying ``out'' and ``far out'' points seem to reflect data sizes which were typical at the time box \& whisker plots were introduced, but this is a detail which might be fixed. The main limitation is that  box \& whisker plots give a global view and ignore any local structure. In particular, they are not an appropriate tool if it comes to analyse the modality of a distribution. More specialised tools are needed in this case, such as the silhouette and the excess density plot, both tools being introduced in \cite{dwmgs91jasa}.
+or $QQ$-plots $$\alpha \mapsto \left(F^{-1} \left(\alpha\right),F_n^{-1} \left(\alpha \right) \right)$$ are tools of first choice. If we consider  the overall scale and location, box \& whisker plots are a valuable tool. This tool loses its sharpness for large data sets, as the rules for identifying ``out'' and ``far out'' points seem to reflect data sizes which were typical at the time box \& whisker plots were introduced, but this is a detail which might be fixed. The main limitation is that  box \& whisker plots give a global view and ignore any local structure. In particular, they are not an appropriate tool if it comes to analyse the modality of a distribution. More specialised tools are needed in this case, such as the silhouette and the excess density plot, both tools introduced in \cite{dwmgs91jasa}.
 
 Here we look for general purpose tools for the analysis of a distribution.
 While we have some instruments for specific tasks, the situation is not satisfactory if it comes to general purpose tools. $PP$-plots and $QQ$-plots need considerable training to be used as diagnostic tools, as they do not highlight qualitative features. 
@@ -129,17 +132,20 @@ $$
 
 We get the length of the shorth as originally defined by taking $\inf_{x}S_{0.5}(x)$.
 
-The definition has a functional form which can be applied to theoretical as well as empirical distributions. The definition in terms of a theoretical probability $\prob{}$ has an immediate empirical counterpart, the empirical length of the shorth
+The definition has a functional form which can be applied to theoretical as well as empirical distributions. The definition in terms of a theoretical probability $\prob{\noop}$ has an immediate empirical counterpart, the empirical length of the shorth
 $$
 S_{n, \alpha}(x)=  \min \{|I|: I=[a,b],\   x  \in I,\  P_n(I) \geq \alpha\}.
 $$ 
-where  $\prob[n]{}$ is the empirical distribution.
+where  $\prob[n]{\noop}$ is the empirical distribution.
 
-The get a picture of the optimisation problem behind the shorth length, we consider the function
+The get a picture of the optimisation problem behind the shorth length, we consider the bivariate function
 $$
-a,b \mapsto I = [a,b] \mapsto \left| I \right|, P(I)\qquad a \leq \b.
+a,b \mapsto I = [a,b] \mapsto \big( \left| I \right|, P\left(I\right) \big)\qquad \text{where } a \leq b.
 $$
-This is defined in the half space above the diagonal. The level curves of $ \left| I \right|$ are deterministic parallels to the diagonal. The level curves of $P(I)$ depend on the distribution. The shorth at level $\alpha$ minimises $\left| I \right|$ in the area above the level curve. Going to the empirical version replaces the level curves of of $P(I)$ by those of of $P_n(I)$. The theoretical curves for the Gaussian distribution and for a  Gaussian sample are shown in figure \ref{fig:level}. Localising the shorth at a point $x$ restricts optimisation to the top left quadrant anchored at $a=b=x$.
+This is defined in the half space $a \leq b$ above the diagonal. The level curves of $ \left| I \right|$ are deterministic parallels to the diagonal. The level curves of $P(I)$ depend on the distribution. The shorth at level $\alpha$ minimises $\left| I \right|$ in the area above the level curve at level 
+$\alpha$, i.e. $\prob{I} \geq \alpha$. Going to the empirical version replaces the level curves of of $P(I)$ by those of of $P_n(I)$. 
+The theoretical curves for the Gaussian distribution and for a  Gaussian sample are shown in figure \ref{fig:level}.
+ Localising the shorth at a point $x$ restricts optimisation to the top left quadrant anchored at $a=b=x$.
 \begin{figure}[htb]
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-level}
 \caption{The shorth length as an optimisation problem: minimize $| [a,b] |,$ 
@@ -187,7 +193,8 @@ If $F$ is continuous with  density $f$, additional properties are guarantied:
 
 \begin{rem}\emph{(minimising intervals)}
 If $F$ is continuous, then for any $\alpha \in [0, 1]$ and any $x \in \real{}$, there is a (possibly infinite) 
-interval $I$ such that $x \in I$, $\prob{I} = \alpha$ with $|I| = S_{\alpha}(x)$. If $\alpha < 1$
+interval $I$ such that $x \in I$, $\prob{I} = \alpha$ with $|I| = S_{\alpha}(x)$. If $\alpha < 1$, the interval is
+finite and contained in \[x-S_{\alpha}(x), x+ S_{\alpha}(x)\].
 \end{rem}
 \todo{add proof concl. 5}
 
@@ -199,15 +206,14 @@ $$
 is continuous.
 \end{rem}
 %
-\begin{rem}\emph{(strict monotonicity)}
+\begin{rem}\emph{(strict monotonicity)}\label{rem:monotone}
 For a continuous distribution function $F$, for each $x \in \real{}$,
 $$
 (x,\alpha) \mapsto S_\alpha(x)
 $$
-is strictly increasing in $\alpha$ on $(0, 1)$..
+is strictly increasing in $\alpha$ on $(0, 1)$.
 \end{rem}
 
-To use empirical distribution functions, the discontinuous case is of interest.
 
 In the limit,  $\lim_{\alpha \rightarrow 0} S_\alpha(x) =0$. 
 
@@ -216,8 +222,9 @@ In particular, for the empirical version, $S_{n,
 
 %
 %
-\subsection{Computing the Shorth Length}
-\todo{add contour curves for theoretical and empirical}
+\subsection{Computing the Empirical Shorth Length}
+To use empirical distribution functions, the discontinuous case is of interest.
+
 \begin{rem}\emph{(interpolation)}\label{rem:interpolation}
 If $x_0 < x < x_1$ and $\prob{\ \left( x_0, x_1 \right)\  }=0$, then 
 $$S_{\alpha}(x) = \left(S_{\alpha}\left(x_0\right) + \Delta_0\right) \wedge 
@@ -243,6 +250,8 @@ $$\msc{C}_i = \msc{C}_{i-1} \setminus \{ [X_{(i-1-\Delta_{\alpha})}, X_{(i-1)}] 
 giving an algorithm with linear complexity in $n$.
 
 \end{rem}
+
+An additional reduction is possible using the monotonicity in $\alpha$ (remark \ref{rem:monotone}), but this may not be worth the effort.
 %
 %
 %
@@ -256,7 +265,7 @@ $$x \mapsto S_\alpha(x)$$
 The empirical shorth plot is $$x \mapsto S_{n,\alpha(x)}.$$ See figure \ref{fig:shorthdef}.
 \begin{figure}[htb]
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-shorthdef}
-\caption{Shorth length and 1/Shorth length for a sample of 50 normal variates. Note: different scales are used.}
+\caption{Theoretical shorth length and shorth length for a sample of 50 normal variates for $\alpha=0.5$. Note: different scales are used.}
 \label{fig:shorthdef}
 \end{figure}
 
@@ -265,12 +274,9 @@ Mass concentration now can be represented by the graph of $x \mapsto S_\alpha(x)
 small length of the shorth signals a large mass concentration. To make the interpretation easier, we 
 prefer to invert the orientation of the axis so that it is aligned with density axis.
 
-\todo{show theoretical and empirical shorth plot for Gaussian}
 
 \subsection{Display Details}
 %
-\todo{show 50\% shorth for normal and normal sample}
-\todo{reduce to neg}
 Several choices can to be made for the visual representation. 
 The common conception seems to view a distribution represented by its density. From a mathematical 
 point of view, plotting $x \mapsto 1/S_{\alpha}(x)$ would be first choice, since this is approximately 
@@ -285,12 +291,18 @@ avoids the need to special case point masses while keeping the qualitative impre
 To make comparison between different data sets easier, we can use the classical shorth length $\min_x S_{0.5}(x)$ as a scale estimator and remove the scale dependency by taking the quotient. This quotient
 called the  standardised short length and we use 
 $$x \mapsto\  \ \frac{S_{\alpha}(x)}{\min_{x\prime} S_{0.5}(x\prime)}$$
-for the (standardised) shorth plot (See figure \ref{fig:sstd}).
-\begin{figure}[htb]
-\includegraphics[width=1.0\linewidth]{TheShorthPlot-sstd}
-\caption{Shorth length and standardised shorth length for the same sample of 50 normal variates as above.}
-\label{fig:sstd}
-\end{figure}
+for the (standardised) shorth plot. The only difference is the scale labeling.
+%\begin{figure}[htb]
+%<<fig=TRUE, echo=FALSE,label=sstd, height=4, width=8, include=FALSE>>=
+%oldpar<-par(mfrow=c(1,2))
+%lshorth(rnorm50, rescale="none", probs=0.5, frame.plot=FALSE,  legend=NULL, main=NULL)
+%lshorth(rnorm50, rescale="std", probs=0.5, frame.plot=FALSE,  legend=NULL, main=NULL)
+%par(oldpar)
+%@
+%\includegraphics[width=1.0\linewidth]{TheShorthPlot-sstd}
+%\caption{Shorth length and standardised shorth length for the same sample of 50 normal variates as above ($\alpha=0.5$).}
+%\label{fig:sstd}
+%\end{figure}
 
 
 
@@ -303,9 +315,9 @@ Figure \ref{fig:s05unln} gives examples of the shorth plot for the uniform, norm
 %\begin{figure}[htb]
 %<<fig=TRUE, echo=FALSE,label=s05theor, height=3, width=6, include=FALSE>>=
 %oldpar <-par(mfrow=c(1,3))
-%lshorth(runif(1000),probs=0.5,  rescale="neg", legend=FALSE, ylim=c(-1,0), xlab="uniform", main=NULL)
-%lshorth(rnorm(1000),probs=0.5,  rescale="neg", legend =FALSE, xlab="normal", main=NULL)
-%lshorth(exp(rnorm(1000)),probs=0.5,  rescale="neg", legend =FALSE, xlab="log normal", main=NULL);
+%lshorth(runif(1000), probs=0.5,  rescale="neg", frame.plot=FALSE, legend="topright", ylim=c(-1,0), xlab="uniform", main=NULL)
+%lshorth(rnorm(1000), probs=0.5,  rescale="neg", frame.plot=FALSE,  legend = NULL, xlab="normal", main=NULL)
+%lshorth(exp(rnorm(1000)), probs=0.5,  rescale="neg", frame.plot=FALSE,  legend = NULL, xlab="log normal", main=NULL);
 %par(oldpar)
 %@
 %\includegraphics[width=1.0\linewidth]{TheShorthPlot-s05theor}
@@ -321,8 +333,8 @@ Figure \ref{fig:s05unln} gives examples of the shorth plot for the uniform, norm
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-s05unln}
 \caption{ $x \mapsto - \ S_{n,{0.5}}(x)$
 %\caption{ $x \mapsto - \ \frac{S_{0.5}(x)}{\min_{x\prime} S_{0.5}(x\prime)}$ 
-for a uniform, a normal, and a log-normal distribution with sample sizes
-$50, 100, 200$. Note: Different scales are used for the shorth length.}
+for a uniform, a normal, and a log-normal distribution with varying sample sizes.
+Note: Different scales are used for the shorth length.}
 \label{fig:s05unln}
 \end{figure}
 \todo{replace last line by theoretical plots}
@@ -334,9 +346,9 @@ Varying the coverage level $\alpha$ as in figure \ref{fig:s05unlnalpha} gives an
 %<<fig=TRUE, echo=FALSE,label=s05theoralpha, height=3, width=6, include=FALSE>>=
 %oldpar <-par(mfrow=c(1,3))
 %ps <- c(0.125,0.25,0.5,0.75,0.875)
-%lshorth(runif(1000),probs=ps,  rescale="neg", legend=FALSE,  ylim=c(-1,0), xlab="uniform", main=NULL)
-%lshorth(rnorm(1000),probs=ps,  rescale="neg", legend =FALSE, xlab="normal", main=NULL)
-%lshorth(exp(rnorm(1000)),probs=ps,  rescale="neg", legend =FALSE, xlab="log normal", main=NULL);
+%lshorth(runif(1000), probs=ps,  rescale="neg", frame.plot=FALSE, legend="topright",  ylim=c(-1,0), xlab="uniform", main=NULL)
+%lshorth(rnorm(1000), probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, xlab="normal", main=NULL)
+%lshorth(exp(rnorm(1000)), probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, xlab="log normal", main=NULL);
 %par(oldpar)
 %@
 %\includegraphics[width=1.0\linewidth]{TheShorthPlot-s05theoralpha}
@@ -365,7 +377,8 @@ Varying the coverage level $\alpha$ as in figure \ref{fig:s05unlnalpha} gives an
 \section{Examples}
 %
 \subsection{Old Faithful Geyser}
-As a first example, we use the eruption durations of the Old Faithful geyser. The data is just one component of a process data set. Looking at a one dimensional marginal distribution ignores the process structure. However these data have been used repeatedly to illustrate smoothing algorithms, and we reuse it to illustrate our approach. See figure \ref{fig:faithful}.
+As a first example, we use the eruption durations of the Old Faithful geyser. The data is just one component of a process data set. 
+Looking at a one dimensional marginal distribution ignores the process structure. However these data have been used repeatedly to illustrate smoothing algorithms, and we reuse it to illustrate our approach (see figure \ref{fig:faithful}). This is a good natured data set showing two distict nodes  with sizable observation count, and some overall skewness.
 
 
 %\begin{figure}[htb]
@@ -391,15 +404,32 @@ As a first example, we use the eruption durations of the Old Faithful geyser. Th
 \caption{Eruption durations of the Old Faithful geyser:  (left) density estimation (R defaults)}\label{fig:faithfuldens}\caption{(right) shorth plot}\label{fig:faithful}
 \end{figure}
 
-The high coverage levels contours of the shorth plot $(\alpha > 50\%)$ just show the overall range of the data. The $50\%$ level indicates to a pronounced skewness. The top levels reveal that we have two modes, with a comparable coverage range. This is not obvious from the density plot, since it mixes information about local heights attributable to modes with information about the mixture proportions.
+The high coverage levels contours of the shorth plot $(\alpha > 50\%)$ just show the overall range of the data. The $50\%$ level indicates to a pronounced skewness. The top levels reveal that we have two modes, with a comparable coverage range. This is not obvious from the density plot, since the density plot mixes information about local heights attributable to modes with information about the mixture proportions.
 
-Density estimators with varying bandwidth or histograms with varying parameters could reveal these details. The multi scale property of the shorth plot allows to combine the pictures.
+Density estimators with varying bandwidth or histograms with varying parameters could reveal these details. The multi scale property of the shorth plot allows to combine the aspects in one pictures.
 %
 %\clearpage
 \subsection{Melbourne Temperature Data}
+R. Hyndman pointed out the bifurcation to bimodality in the Melbourne temperature data set \cite{Hyndman1996Estimating-and-}. We use an extended version of the data set\footnote{Melbourne temperature data 1955-2007, provided by the Bureau of Meteorology, Victorian Climate Services Centre, Melbourne.} and analyze the day by day difference in temperature   at 15h (the daily report reference time) conditioned on today's emperature and pressure at the reference time.  The shorth plot view is in figure \ref{fig:melbournet}. The full picture reveals a cusp-type bifurcation. Figure \ref{fig:melbourne} shows the shorth plot for the temperature difference at 15h (the daily report reference time) to next day's temperature, conditioned on today's temperature and pressure. It reveals the modality split as well as the skewness which is pressure dependent.
+\begin{figure}[htb]
+\includegraphics[width=\linewidth]{TheShorthPlot-MelbourneT}
+%\caption{Eruption durations of the Old Faithful geyser: density estimation (R defaults)}\label{fig:faithfuldens}
+%\end{figure}%
+\caption{Melbourne day by day temperature difference at 15:00h conditioned at today's temperature}\label{fig:melbournet}\end{figure}
+
+%#	plotcond(tlim, plim=c(qpress[3],9999))
+%#	plotcond(tlim, plim=c(qpress[2],qpress[3]))
+\begin{figure}[htb]
+\includegraphics[width=\linewidth]{TheShorthPlot-Melbourne}
+%\caption{Eruption durations of the Old Faithful geyser: density estimation (R defaults)}\label{fig:faithfuldens}
+%\end{figure}%
+\caption{Melbourne day by day temperature difference at 15:00h  conditioned at today's temperature and pressure}\label{fig:melbourne}\end{figure}
+
+
 %
 \subsection{Chondrite Data}
-The second example is the chondrite data set, used in to illustrate a strategy to hunt for modes in \cite{Good1980Density-estimat}. See figure \ref{fig:chondrite}.
+The  chondrite data set was used in to illustrate a strategy to hunt for modes in \cite{Good1980Density-estimat}. See figure \ref{fig:chondrite}. This data set is pressing the limits for the shorth plot since it has a very low sample size with presumably three modes.
+
 \begin{figure}[htb]
 \includegraphics[width=0.45\linewidth]{TheShorthPlot-Chondritedens}
 %\caption{Silicate in chondrite: density estimation}\label{fig:chondritedens}
@@ -417,7 +447,8 @@ including a smaller coverage level.
 %\caption{Silicate in chondrite: shorth plot}\label{fig:chondrite}
 %\end{figure}
 
-For comparison, we add the silhouette plot suggested in \cite{dwmgs91jasa} as figure \ref{fig:chondritesilh} The silhouette plot, specialised at detecting modes, clearly outperforms the shorth plot for this extremely small data set. But although the short plot is  a general purpose plot, it hints a third mode at all levels. if it goes to level $12.5\%$ it can trace it, and clearly identifies it for lower levels.%
+For comparison, we add the silhouette plot suggested in \cite{dwmgs91jasa} as figure \ref{fig:chondritesilh}. The silhouette plot, specialised at detecting modes, clearly outperforms the shorth plot for this extremely small data set. But although the short plot is  a general purpose plot,
+ it hints at a third mode at all levels. If it goes to level $12.5\%$ it can trace the third mode, and clearly identifies it for lower coverage levels.%
 \begin{figure}[htb]
 \includegraphics[width=0.5\linewidth]{../../shared/media/excess/excesschondrite1.jpg}
 \caption{Silicate in chondrite: silhouette plot}\label{fig:chondritesilh}
@@ -426,11 +457,11 @@ For comparison, we add the silhouette plot suggested in \cite{dwmgs91jasa} as fi
 
 %
 \subsection{Hartigan's Hat}
-The third example is a mixture in proportions $3:2:3$  of a uniform on $\left(0,\frac{1}{4}\right)$, on $\left(\frac{1}{4}, \frac{3}{4} \right)$, and on $\left(\frac{3}{4}, 1 \right)$ used in \cite{Hartigan1985The-dip-test-of} to illustrate the dip test of unimodality. See figure \ref{fig: hhat}.
+This example is a mixture in proportions $3:2:3$  of a uniform on $\left(0,\frac{1}{4}\right)$, on $\left(\frac{1}{4}, \frac{3}{4} \right)$, and on $\left(\frac{3}{4}, 1 \right)$ used in \cite{Hartigan1985The-dip-test-of} to illustrate the dip test of unimodality. See figure \ref{fig: hhat}. For a general analysis, it is a challenge because it combines bimodality with flat parts in the distribution, and a relatively low density in the ``dip''.
 
-In this situation, kernel density estimation performs poorly, since it is heavily degraded by boundary effects which cannot cope with the flat parts of the distribution. Note that in this situation, only $25\%$ of the distribution fall in the ``dip'', and thus it must be hidden in higher coverages.
+In this situation, kernel density estimation performs poorly, since it is heavily degraded by boundary effects which cannot cope with the flat parts of the distribution. Note that in this situation, only $25\%$ of the distribution fall in the ``dip'', and thus it must be hidden in higher coverages for the shorth plot.
 \begin{figure}[htb]
-\includegraphics{TheShorthPlot-hhat}
+\includegraphics[width=0.9\linewidth]{TheShorthPlot-hhat}
 \caption{Hartigan's Hat}\label{fig: hhat}
 \end{figure}
 
@@ -447,12 +478,13 @@ An open question is whether the shorth length approach can be carried over to a 
 \section{Related Approaches}
 The shorth plot is related to kernel density estimation with variable bandwidth. It can be seen as a $k$-nearest neighbour approach. But in contrast to density estimation, it focusses on a concentration functional. Density is an infinitesimal concept. Mass concentration however is a local concept, but not an infinitesimal concept. As a consequence, density has no empirical counterpart, whereas mass concentration has. This makes the shorth length easier to handle for data analytical purposes.
 
-The relation to mass concentration is shared with the silhouette and the excess density plot  (\cite{dwmgs91jasa}). The view however is complementary. Silhouette and the excess density focus on concentration, but the shorth on local spread. Silhouette and the excess density  target at detecting modality and are model based for a global model (e.g., unimodal vs. bimodal). The shorth however has a local perspective, and is model independent.
+The relation to mass concentration is shared with the silhouette and the excess density plot  (\cite{dwmgs91jasa}) or Hyndman's hihest density regions (\cite{Hyndman1996Computing-and-G}). The view however is complementary. Silhouette and the excess density focus on concentration, but the shorth on local spread. Silhouette and the excess density  target at detecting modality and are model based for a global model (e.g., unimodal vs. bimodal). The shorth however has a local perspective, and is model independent.
 
 P. A. and J. W. Tukey suggested a ``balloon plot'' in \cite{Tukey1981Data-Driven-Vie} (in \cite{Barnett1981Looking-at-mult}, reprinted in \cite{Tukey1988collected-V}). This is most closely related to the shorth plot. The main difference is that the balloons are centred at data points. The shorth plot does not use this centring, thus avoiding unnecessary random fluctuation.
 
-\todo{discuss sizer}
-\todo{discuss hyndman highest density regions}
+The SIzer approach by Chaudhuri and Marron \cite{Chaudhuri1999SiZer-for-Explo} is related in spirit to the shorth plot. It tries to present a multiscale representation for smoothing while controlling the artifacts of smoothing by going to a probability scale. The shorth plot avoids the initial smoothing step and is strictly data based.
+
+
 
 \section{Summary}
 The shorth plot is a means to investigate mass concentration. 
@@ -481,12 +513,18 @@ as for global features of the distribution. The good rate of convergence of the 
 \noindent
 {\tiny%
 \verb+$Source: /u/math/j40/cvsroot/lectures/src/shorth/Rnw/lshorth.Rnw.tex,v $+\\
-\verb+$Revision: 1.6 $+\\
-\verb+$Date: 2007/08/31 15:24:37 $+\\
+\verb+$Revision: 1.8 $+\\
+\verb+$Date: 2007/09/04 14:58:01 $+\\
 \verb+$Name:  $+\\
 \verb+$Author: j40 $+\\
 \begin{verbatim}
 $Log: lshorth.Rnw.tex,v $
+Revision 1.8  2007/09/04 14:58:01  j40
+sync
+
+Revision 1.7  2007/09/02 20:41:51  j40
+sync
+
 Revision 1.6  2007/08/31 15:24:37  j40
 basic plot added for definition
 
