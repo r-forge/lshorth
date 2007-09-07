@@ -161,31 +161,35 @@ $contents .= fread($handle, 8192);
 fclose($handle);
 echo $contents; } ?>
 
+<div style="margin:20px">
 <!-- end of project description -->
-<p>
+<div style="margin-top:40px; margin-bottom:40px; ">
 <strong>To install this package directly within R type </strong><br>
 &nbsp;&nbsp;&nbsp;<code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org")</code></p>
 <p><strong>To install the recent package from source directly within R type </strong><br>
 &nbsp;&nbsp;&nbsp;<code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org",type="source")</code></p>
+</div>
 
-<p>
-Technical notes with statistical background information are in
+<div style="margin-top:40px; margin-bottom:40px; ">
+Technical notes describing the shorth plot and its statistical background are in
 <dl>
-<dt> G. Sawitzki: <a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">The Shorth Plot.</a> </dt><dd>Technical notes. StatLab Heidelberg 1992 (rev. 2007).</br>
-The technical notes will be installed as doc/TheShorthPlot.pdf along with the package.</dd>
+<dt>G. Sawitzki: <a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">The Shorth Plot.</a> </dt><dd>Technical notes. StatLab Heidelberg 1992 (rev. 2007).<br>
+</dd>
 </dl>
-
+The technical notes will be installed as doc/TheShorthPlot.pdf along with the package.
+</div>
 
 
 </p>
 <p>
 See also:
 <dl>
-<dt> G. Sawitzki: <ahref="http://statlab.uni-heidelberg.de/reports/by.series/report.08.pdf">DiagnosticPlots for One-Dimensional Data.</a> </dt><dd>in: Computational Statistics. Papers collected on the Occasion of the</br>25th Conference on Statistical Computing at Schloss Reisensburg.</br>(Edited by P.Dirschedl &amp; R.Ostermann for the Working Groups ... ...)</br> Heidelberg, Physica, 1994, ISBN 3-7908-0813-x, p. 237-258. </dd>
+<dt> G. Sawitzki: <ahref="http://statlab.uni-heidelberg.de/reports/by.series/report.08.pdf">DiagnosticPlots for One-Dimensional Data.</a> </dt><dd>in: Computational Statistics. Papers collected on the Occasion of the25th Conference<br> on Statistical Computing at Schloss Reisensburg.<br>(Edited by P.Dirschedl &amp; R.Ostermann for the Working Groups ... ...)<br> Heidelberg, Physica, 1994, ISBN 3-7908-0813-x, p. 237-258. </dd>
 </dl>
 <br>
 </p>
 <p>The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
+</div>
 
 </body>
 </html>
