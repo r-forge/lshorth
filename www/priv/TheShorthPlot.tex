@@ -105,7 +105,7 @@ Focussing on the density, in contrast to the distribution function, leads to den
 
 We will use the length of the shorth to analyse the qualitative shape of a distribution. The shorth is the shortest interval containing half of a distribution. The length of the shorth is a functional which is easy to estimate, with convergence of rate $n^{-\frac{1}{2}}$, and gives a graphical representation which is easy to interpret. 
 
-We will start with the classical definition of a shorth. To overcome the handicaps of other methods, we have to extend the classical definition definition to supply localisation, and to allow for multi scale analysis.
+We will start with the classical definition of a shorth. To overcome the handicaps of other methods, we have to extend the classical definition to supply localisation, and to allow for multi scale analysis.
 
 %
 \section{The Length of the Shorth}
@@ -134,7 +134,7 @@ We get the length of the shorth as originally defined by taking $\inf_{x}S_{0.5}
 
 The definition has a functional form which can be applied to theoretical as well as empirical distributions. The definition in terms of a theoretical probability $\prob{\noop}$ has an immediate empirical counterpart, the empirical length of the shorth
 $$
-S_{n, \alpha}(x)=  \min \{|I|: I=[a,b],\   x  \in I,\  P_n(I) \geq \alpha\}.
+S_{n, \alpha}(x)=  \min \{|I|: I=[a,b],\   x  \in I,\  P_n(I) \geq \alpha\}
 $$ 
 where  $\prob[n]{\noop}$ is the empirical distribution.
 
@@ -189,7 +189,7 @@ is monotonously non decreasing in $\alpha$.
 %: continuous F
 %
 
-If $F$ is continuous with  density $f$, additional properties are guarantied:
+If $F$ is continuous with  density $f$, additional properties are guaranteed:
 
 \begin{rem}\emph{(minimising intervals)}
 If $F$ is continuous, then for any $\alpha \in [0, 1]$ and any $x \in \real{}$, there is a (possibly infinite) 
@@ -241,13 +241,13 @@ $$
 Using a stepwise algorithm, a further reduction of complexity is possible: 
 let 
 $$\msc{C}_i \deq \{ I : X_{(i)} \in I, \prob{I} \geq	 \alpha\}$$
-the set of candidate intervals at $X_{(i)}$ for level $\alpha$. 
+be the set of candidate intervals at $X_{(i)}$ for level $\alpha$. 
 Then
 $$S_{n,\alpha}(X_{i}) = \min\{|I|: I \in \msc{C}_i \}.$$
-Unless boundary corrections apply, 
+Unless boundary corrections apply, we have
 $$\msc{C}_i = \msc{C}_{i-1} \setminus \{ [X_{(i-1-\Delta_{\alpha})}, X_{(i-1)}] \} 
-\cup \{ [X_{(i)}, X_{(i+\Delta_{\alpha}})] \},$$ 
-giving an algorithm with linear complexity in $n$.
+\cup \{ [X_{(i)}, X_{(i+\Delta_{\alpha}})] \}.$$ 
+This gives an algorithm with linear complexity in $n$.
 
 \end{rem}
 
@@ -489,7 +489,7 @@ The SIzer approach by Chaudhuri and Marron \cite{Chaudhuri1999SiZer-for-Explo} i
 \section{Summary}
 The shorth plot is a means to investigate mass concentration. 
 It is easy to compute, avoids the bandwidth selection problems, and allows scanning for local as well
-as for global features of the distribution. The good rate of convergence of the shorth estimator makes it useful already for moderate sample size.
+as for global features of the distribution. The good rate of convergence of the shorth estimator makes it useful already at moderate sample sizes.
 
 %\section{}
 %\subsection{}
