@@ -157,6 +157,9 @@ This is defined in the half space $a \leq b$ above the diagonal. The level curve
 $\alpha$, i.e. $\prob{I} \geq \alpha$. Going to the empirical version replaces the level curves of of $P(I)$ by those of of $P_n(I)$. 
 The theoretical curves for the Gaussian distribution and for a  Gaussian sample are shown in figure \ref{fig:level}.
  Localising the shorth at a point $x$ restricts optimisation to the top left quadrant anchored at $a=b=x$.
+ 
+The increasingly flat level curves for $P([a,b]) = const$  in figure \ref{fig:level} illustrate why the location of the shorth does not have satisfactory stattistical properties while the length of the shorth has good asymptotic behaviour.
+
 <<fig=TRUE, echo=FALSE,label=level, height=6, width=12, include=FALSE>>=
 oldpar<-par(mfrow=c(1,2))
 F <-function(a,b,distrf){ ifelse(b<a, NA , distrf(b)-distrf(a))}
@@ -213,7 +216,7 @@ par(oldpar)
 \begin{figure}[htb]
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-level}
 \caption{The shorth length as an optimisation problem: minimize $| [a,b] |,$ 
-under the restriction $P([a,b] ) \geq \alpha$. Localising at $x$ restricts the optimisation  to the quadrant top left of $x$.}
+under the restriction $P([a,b] ) \geq \alpha$. Localising at $x$ restricts the optimisation  to the quadrant top left of $x$ (shaded grey).}
 \label{fig:level}
 \end{figure}
 
@@ -224,11 +227,12 @@ $$
 together with its localised and/or empirical version.
 %
 The relation between the shorth length and its inverse is extensively used in Gr\"ubel's analysis of the asymptotics  of the (unlocalised) shorth. A modified version of Gr\"ubel's proof carries over to the localised shorth, provided there are no flat parts in the distribution, giving a  $n^{-\frac{1}{2}}$ asymptotics of the empirical shorth length to the theoretical shorth length.
+\todo{extend discussion of concentration function}
 
 \subsection{Elementary Properties}
 Here and in the following, we assume a sample $X_1, \ldots, X_n$ from some distribution $P$ with 
 distribution function $F$. Let $P_n$ be the empirical distribution and $F_n$ the empirical distribution 
-function. The $k-$th order statistics is denoted by $X_{(k)}$.
+function. The $k$-th order statistics is denoted by $X_{(k)}$.
 
 \chck{ok?}\begin{rem}\emph{(invariance)}
 For all $\alpha$
@@ -338,7 +342,7 @@ par(oldpar)
 @
 \begin{figure}[htb]
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-shorthdef}
-\caption{Theoretical shorth length and shorth length for a sample of 50 normal variates for $\alpha=0.5$. Note: different scales are used.}
+\caption{Theoretical shorth length and shorth length for a sample of 50 normal variates for $\alpha=0.5$.} %Note: different scales are used.}
 \label{fig:shorthdef}
 \end{figure}
 
@@ -376,9 +380,10 @@ par(oldpar)
 %
 
 To make comparison between different data sets easier, we can use the classical shorth length $\min_x S_{0.5}(x)$ as a scale estimator and remove the scale dependency by taking the quotient. This quotient
-called the  standardised short length and we use 
-$$x \mapsto\  \ \frac{S_{\alpha}(x)}{\min_{x\prime} S_{0.5}(x\prime)}$$
-for the (standardised) shorth plot. The only difference is the scale labeling.
+$$x \mapsto\  \ \frac{S_{\alpha}(x)}{\min_{x^\prime} S_{0.5}(x^\prime)}$$
+is called the  standardised short length .
+%for the (standardised) shorth plot. 
+The only difference is the scale labeling.
 %\begin{figure}[htb]
 %<<fig=TRUE, echo=FALSE,label=sstd, height=4, width=8, include=FALSE>>=
 %oldpar<-par(mfrow=c(1,2))
@@ -390,7 +395,7 @@ for the (standardised) shorth plot. The only difference is the scale labeling.
 %\caption{Shorth length and standardised shorth length for the same sample of 50 normal variates as above ($\alpha=0.5$).}
 %\label{fig:sstd}
 %\end{figure}
-Ih these notes, we do not use standardized shorth length, but use the original scales.
+In these notes, we do not use standardized shorth length, but use the original scales.
 
 
 Instead of the exact interpolation
@@ -418,7 +423,7 @@ Figure \ref{fig:s05unln} gives examples of the shorth plot for the uniform, norm
 %
 \begin{figure}[htb]
 <<fig=TRUE, echo=FALSE,label=s05unln, height=12, width=8, include=FALSE>>=
-oldpar <-par(mfrow=c(3,3))
+oldpar <-par(mfrow=c(4,3))
 ps <- 0.5
 n<-50
 uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
@@ -433,15 +438,21 @@ normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  l
 lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL);
 
 n<-1000
-uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg", 
+uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg", frame.plot=FALSE, 
 legend = NULL,  ylim=c(1,0), main=NULL);
 normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
-lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,   legend ="topright", main=NULL);
+lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE, main=NULL);
 
+n<-10000
+uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg", frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL);
+normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
+lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE, main=NULL);
 par(oldpar)
 @
+%lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,   legend ="topright", main=NULL);
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-s05unln}
-\caption{ $x \mapsto - \ S_{n,{0.5}}(x)$
+\caption{ $x \mapsto  \ S_{n,{0.5}}(x)$
 %\caption{ $x \mapsto - \ \frac{S_{0.5}(x)}{\min_{x\prime} S_{0.5}(x\prime)}$ 
 for a uniform, a normal, and a log-normal distribution with varying sample sizes.
 Note: Different scales are used for the shorth length.}
@@ -472,7 +483,7 @@ Varying the coverage level $\alpha$ as in figure \ref{fig:s05unlnalpha} gives an
 %
 \begin{figure}[htb]
 <<fig=TRUE, echo=FALSE,label=s05unlnalpha, height=12, width=8, include=FALSE>>=
-oldpar <-par(mfrow=c(3,3))
+oldpar <-par(mfrow=c(4,3))
 ps <- c(0.125,0.25,0.5,0.75,0.875)
 n<-50
 uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
@@ -492,12 +503,18 @@ legend = NULL,  ylim=c(1,0), main=NULL);
 normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
 lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = "topright", main=NULL);
 
+n<-10000
+uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL, rug=FALSE);
+normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL, rug=FALSE)
+lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = "topright", main=NULL, rug=FALSE);
+
 par(oldpar)
 @
 %\caption{ $x \mapsto 1/S_{\alpha}(x)$ for a uniform, a normal and a log-normal distribution with sample sizes
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-s05unlnalpha}
 %\caption{ $x \mapsto - \ \frac{S_{\alpha}(x)}{\min_{x\prime} S_{0.5}(x\prime)}$
-\caption{ $x \mapsto - \ S_{n, \alpha}(x)$
+\caption{ $x \mapsto  \ S_{n, \alpha}(x)$
  for a uniform, a normal and a log-normal distribution with varying sample sizes.}
 %$50, 100, 200$.}
 \label{fig:s05unlnalpha}
@@ -528,7 +545,7 @@ rug(faithful$eruptions, quiet=TRUE)
 %\end{minipage}
 %%
 <<fig=true, echo=FALSE,label=Faithful, include=FALSE>>=
-lshorth(faithful$eruptions, probs=c(0.125,0.25,0.5,0.75, 0.875), rescale="neg", frame.plot=FALSE,  legend="right", main="")
+lshorth(faithful$eruptions, probs=c(0.125,0.25,0.5,0.75, 0.875), rescale="neg", frame.plot=FALSE,  legend="right", main="",xlab="Eruption duration [min], n=272")
 @
 %\begin{minipage}0.4\linewidth
 %\begin{figure}[htb]
@@ -551,9 +568,21 @@ range of the data. The $50\%$ level indicates a pronounced skewness. The top lev
 ($25\%, 12.5\%$) reveal 
 that we have two modes, with a comparable coverage range. This is not obvious from 
 the density plot, since the density plot mixes information about local heights attributable 
-to modes with information about the mixture proportions.
+to modes with information about the mixture proportions. Density estimators with varying bandwidth or histograms with varying parameters could reveal these details (see figure \ref{fig:faithfuldensadj}). The multi scale property of the shorth plot allows to combine the aspects in one picture.
+<<fig=true, echo=FALSE, label=Faithfuldensadj, include=FALSE, width=10, height=5>>=
+oldpar <- par(mfrow=c(1,2))
+plot(density(faithful$eruptions,adjust=0.3),main="", frame.plot=FALSE)
+rug(faithful$eruptions, quiet=TRUE)
+plot(density(faithful$eruptions,adjust=1.7),main="", frame.plot=FALSE)
+rug(faithful$eruptions, quiet=TRUE)
+par(oldpar)
+@
+\begin{figure}[htb]
+\includegraphics[width=0.95\linewidth]{TheShorthPlot-Faithfuldensadj}
+\caption{Eruption durations of the Old Faithful geyser:  density estimation with varying bandwidth. The density plot mixes information about local heights attributable 
+to modes with information about the mixture proportions. }\label{fig:faithfuldensadj}
+\end{figure}
 
-Density estimators with varying bandwidth or histograms with varying parameters could reveal these details. The multi scale property of the shorth plot allows to combine the aspects in one picture.
 %
 %\clearpage
 %
@@ -578,23 +607,24 @@ plotcond <- function(tlim,plim,main=NULL,...){
 	(melbourne15h[,3]<= plim[2]),]
 	diffT <- incond[,4]-incond[,2]
 	diffT <- diffT[is.finite(diffT)]
-	ls <- lshorth(diffT, probs=c(0.0625, 0.125,0.25,0.5,0.75, 	0.875),plot=FALSE)
+	ls <- lshorth(diffT, probs=c( 0.125,0.25,0.5,0.75, 	0.875),plot=FALSE)
 	if (is.null(main)){main=paste("T ",tlim,"p ",plim, sep=" ")}
 	plot(ls, frame.plot=FALSE, main=main,...)
 	}
 oldpar <- par(mfrow=c(1,3))
 #plotcond(thigh,c(0,9999),main=expression(paste(T>= 32,  bquote(.(thigh[1])),degree ,"C")), legend=NULL)
 
-plotcond(thigh,c(0,9999),main=expression(paste(T>= 32,  degree ,"C")), legend=NULL)
-plotcond(tmed,c(0,9999),main=expression(paste(25.6<=T, ",",T<= 32,  degree ,"C")), legend=NULL)
 plotcond(tlow,c(0,9999),main=expression(paste(21.7<=T, ",",T<= 25.6,  degree ,"C")),legend="bottom")
+plotcond(tmed,c(0,9999),main=expression(paste(25.6<=T, ",",T<= 32,  degree ,"C")), legend=NULL)
+plotcond(thigh,c(0,9999),main=expression(paste(T>= 32,  degree ,"C")), legend=NULL)
 par(oldpar)
 @
 \begin{figure}[htb]
 \includegraphics[width=\linewidth]{TheShorthPlot-MelbourneT}
 %\caption{Eruption durations of the Old Faithful geyser: density estimation (R defaults)}\label{fig:faithfuldens}
 %\end{figure}%
-\caption{Melbourne day by day temperature difference at 15:00h conditioned at today's temperature}\label{fig:melbournet}\end{figure}
+\caption{Shorth plot at coverage levels $\alpha =0.125,0.25,0.5,0.75,  0.875$ for Melbourne day by day temperature difference at 15:00h conditioned at today's temperature. 
+A bifurcation to bimodality occurs at high temperatures.}\label{fig:melbournet}\end{figure}
 
 <<fig=true, echo=FALSE,label=Melbourne, height=12, width=12, include=FALSE>>=
 
@@ -626,7 +656,7 @@ par(oldpar)
 \includegraphics[width=\linewidth]{TheShorthPlot-Melbourne}
 %\caption{Eruption durations of the Old Faithful geyser: density estimation (R defaults)}\label{fig:faithfuldens}
 %\end{figure}%
-\caption{Melbourne day by day temperature difference at 15:00h  conditioned at today's temperature and pressure}\label{fig:melbourne}\end{figure}
+\caption{Shorth plot at coverage levels at coverage levels $\alpha =0.125,0.25,0.5,0.75,  0.875$ far Melbourne day by day temperature difference at 15:00h  conditioned at today's temperature and pressure. Plot matrix of shorth plots for varying temperature ranges (vertical) and varying pressures (horizontal).}\label{fig:melbourne}\end{figure}
 
 
 %
@@ -651,7 +681,7 @@ rug(chondrite$V1, quiet=TRUE)
 Using the methods of  \cite{Good1980Density-estimat} would allow to reveal a third mode, but it is subject to discussion whether this is over-using the data dependency. The shorth, as a general purpose method, gives figure \ref{fig:chondrite}. Of course it would be possible to isolate a third mode by 
 including a smaller coverage level. 
 <<fig=true, echo=FALSE,label=Chondrite, width=8, height=8, include=FALSE>>=
-lshorth(chondrite$V1,rescale="neg", frame.plot=FALSE,  legend="bottom", main="")
+lshorth(chondrite$V1,rescale="neg", frame.plot=FALSE,  legend="bottom", main="", xlab="silicate content, n=22")
 @
 %\begin{figure}[htb]
 %\includegraphics[width=0.5\linewidth]{TheShorthPlot-Chondrite}
@@ -732,7 +762,7 @@ An open question is whether the shorth length approach can be carried over to a 
 \section{Related Approaches}
 The shorth plot is related to kernel density estimation with variable bandwidth. It can be seen as a $k$-nearest neighbour approach. But in contrast to density estimation, it focusses on a concentration functional. Density is an infinitesimal concept. Mass concentration however is a local concept, but not an infinitesimal concept. As a consequence, density has no empirical counterpart, whereas mass concentration has. This makes the shorth length easier to handle for data analytical purposes.
 
-The relation to mass concentration is shared with the silhouette and the excess density plot  (\cite{dwmgs91jasa}) or Hyndman's hihest density regions (\cite{Hyndman1996Computing-and-G}). The view however is complementary. Silhouette and the excess density focus on concentration, but the shorth on local spread. Silhouette and the excess density  target at detecting modality and are model based for a global model (e.g., unimodal vs. bimodal). The shorth however has a local perspective, and is model independent.
+The relation to mass concentration is shared with the silhouette and the excess density plot  (\cite{dwmgs91jasa}) or Hyndman's highest density regions (\cite{Hyndman1996Computing-and-G}). The view however is complementary. Silhouette and the excess density focus on concentration, but the shorth on local spread. Silhouette and the excess density  target at detecting modality and are model based for a global model (e.g., unimodal vs. bimodal). The shorth however has a local perspective, and is model independent.
 
 P. A. and J. W. Tukey suggested a ``balloon plot'' in \cite{Tukey1981Data-Driven-Vie} (in \cite{Barnett1981Looking-at-mult}, reprinted in \cite{Tukey1988collected-V}). This is most closely related to the shorth plot. The main difference is that the balloons are centred at data points. The shorth plot does not use this centring, thus avoiding unnecessary random fluctuation.
 
@@ -749,13 +779,13 @@ as for global features of the distribution. The good rate of convergence of the 
 %\subsection{}
 %\backmatter
 %\bibliographystyle{alpha}
-%\bibliographystyle{amsalpha}
-\bibliographystyle{alphadin}
+\bibliographystyle{amsalpha}
+%\bibliographystyle{alphadin}
 %\bibliographystyle{agsm}
 %\bibliographystyle{amsxport}
 %\bibstyle{alpha}
 %\pagenumbering[Bibliography]{bychapter}% no effect
-\bibliography{../../shared/bib/sda}
+\bibliography{/Users/gs/Documents/lectures/src/shared/bib/sda}
 
 \ifx\private\undefined%
 \else
