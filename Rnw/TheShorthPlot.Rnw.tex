@@ -81,6 +81,7 @@ Typeset, with minor revisions: \today}                                          
 
 \begin{document}
 <<echo=FALSE, print=FALSE>>=
+x <- runif(1) # make sure  .Random.seed is defined
 save.RNGseed <- .Random.seed
 save.RNGkind <- RNGkind()
 save.URL <- "$URL$"
@@ -158,7 +159,7 @@ $\alpha$, i.e. $\prob{I} \geq \alpha$. Going to the empirical version replaces t
 The theoretical curves for the Gaussian distribution and for a  Gaussian sample are shown in figure \ref{fig:level}.
  Localising the shorth at a point $x$ restricts optimisation to the top left quadrant anchored at $a=b=x$.
  
-The increasingly flat level curves for $P([a,b]) = const$  in figure \ref{fig:level} illustrate why the location of the shorth does not have satisfactory stattistical properties while the length of the shorth has good asymptotic behaviour.
+\gsnote{paragraph added}The increasingly flat level curves for $P([a,b]) = const$  in figure \ref{fig:level} illustrate why the location of the shorth does not have satisfactory stattistical properties while the length of the shorth has good asymptotic behaviour.
 
 <<fig=TRUE, echo=FALSE,label=level, height=6, width=12, include=FALSE>>=
 oldpar<-par(mfrow=c(1,2))
@@ -430,24 +431,58 @@ uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALS
 legend = NULL,  ylim=c(1,0), main=NULL);
 normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
 lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend =NULL, main=NULL);
+ru50<-data.frame(uniform,normal,lognormal)
 
 n<-200
 uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
 legend = NULL,  ylim=c(1,0), main=NULL);
 normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
 lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL);
+ru200<-data.frame(uniform,normal,lognormal)
 
 n<-1000
 uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg", frame.plot=FALSE, 
 legend = NULL,  ylim=c(1,0), main=NULL);
 normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
 lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE, main=NULL);
+ru1000<-data.frame(uniform,normal,lognormal)
 
 n<-10000
 uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg", frame.plot=FALSE, 
 legend = NULL,  ylim=c(1,0), main=NULL);
 normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
 lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE, main=NULL);
+ru10000<-data.frame(uniform,normal,lognormal)
+
+par(oldpar)
+@
+% for Tilburg paper
+<<fig=TRUE, echo=FALSE,label=SP05, height=12, width=8, include=FALSE>>=
+oldpar <-par(mfrow=c(3,3))
+uniform <-ru50$uniform;  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL);
+normal<-ru50$normal; lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
+lognormal<- ru50$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend =NULL, main=NULL);
+
+n<-200
+uniform <-ru200$uniform;  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL);
+normal<-ru200$normal; lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
+lognormal<- ru200$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL);
+
+
+n<-10000
+#uniform <-ru10000$uniform;  lshorth(uniform, probs=ps,  rescale="neg", frame.plot=FALSE, 
+#legend = NULL,  ylim=c(1,0), main=NULL, rug=FALSE, xlab="uniform");
+uniform <-ru10000$uniform; 
+lsv <- lshorth(uniform, probs=ps, plot=FALSE)
+lsv$lshorth <- matrix(rep(ps,n), nrow=n, ncol=length(ps),byrow=TRUE)
+plot.lshorth(lsv, rescale="neg", frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL, rug=FALSE, xlab="uniform");
+
+normal<-ru10000$normal; lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL, rug=FALSE, xlab="normal")
+lognormal<- ru10000$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE, main=NULL, rug=FALSE, xlab="lognormal");
+
 par(oldpar)
 @
 %lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,   legend ="topright", main=NULL);
@@ -485,29 +520,57 @@ Varying the coverage level $\alpha$ as in figure \ref{fig:s05unlnalpha} gives an
 <<fig=TRUE, echo=FALSE,label=s05unlnalpha, height=12, width=8, include=FALSE>>=
 oldpar <-par(mfrow=c(4,3))
 ps <- c(0.125,0.25,0.5,0.75,0.875)
-n<-50
-uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+uniform <-ru50$uniform;  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
 legend = NULL,  ylim=c(1,0), main=NULL);
-normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
-lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend =  NULL, main=NULL);
+normal<-ru50$normal; lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
+lognormal<- ru50$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend =NULL, main=NULL);
 
 n<-200
-uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+uniform <-ru200$uniform;  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
 legend = NULL,  ylim=c(1,0), main=NULL);
-normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
-lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL);
+normal<-ru200$normal; lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
+lognormal<- ru200$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL);
+
 
 n<-1000
-uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+uniform <-ru1000$uniform;  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
 legend = NULL,  ylim=c(1,0), main=NULL);
-normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
-lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = "topright", main=NULL);
+normal<-ru1000$normal; lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
+lognormal<- ru1000$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = "topright", main=NULL);
 
 n<-10000
-uniform <-runif(n);  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+uniform <-ru10000$uniform;  lshorth(uniform, probs=ps,  rescale="neg", frame.plot=FALSE, 
 legend = NULL,  ylim=c(1,0), main=NULL, rug=FALSE);
-normal<-rnorm(n); lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL, rug=FALSE)
-lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = "topright", main=NULL, rug=FALSE);
+normal<-ru10000$normal; lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL, rug=FALSE)
+lognormal<- ru10000$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE, main=NULL, rug=FALSE);
+
+
+par(oldpar)
+@
+% for tilburg paper
+<<fig=TRUE, echo=FALSE,label=SPalpha, height=12, width=8, include=FALSE>>=
+oldpar <-par(mfrow=c(3,3))
+ps <- c(0.125,0.25,0.5,0.75,0.875)
+uniform <-ru50$uniform;  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL);
+normal<-ru50$normal; lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
+lognormal<- ru50$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend =NULL, main=NULL);
+
+n<-200
+uniform <-ru200$uniform;  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL);
+normal<-ru200$normal; lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
+lognormal<- ru200$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL);
+
+n<-10000
+uniform <-ru10000$uniform; 
+lsv <- lshorth(uniform, probs=ps, plot=FALSE)
+lsv$lshorth <- matrix(rep(ps,n), nrow=n, ncol=length(ps),byrow=TRUE)
+plot.lshorth(lsv, rescale="neg", frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL, rug=FALSE, xlab="uniform");
+normal<-ru10000$normal; lshorth(normal, probs=ps,  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL, rug=FALSE, xlab="normal")
+lognormal<- ru10000$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE, main=NULL, rug=FALSE, xlab="lognormal");
+
 
 par(oldpar)
 @
@@ -519,7 +582,7 @@ par(oldpar)
 %$50, 100, 200$.}
 \label{fig:s05unlnalpha}
 \end{figure}
-\todo{replace 1000 by theor}
+\todo{replace 10000 by theor}
 %
 %
 \clearpage
@@ -568,7 +631,7 @@ range of the data. The $50\%$ level indicates a pronounced skewness. The top lev
 ($25\%, 12.5\%$) reveal 
 that we have two modes, with a comparable coverage range. This is not obvious from 
 the density plot, since the density plot mixes information about local heights attributable 
-to modes with information about the mixture proportions. Density estimators with varying bandwidth or histograms with varying parameters could reveal these details (see figure \ref{fig:faithfuldensadj}). The multi scale property of the shorth plot allows to combine the aspects in one picture.
+to modes with information about the mixture proportions.\gsnote{figure added to illustrate this} Density estimators with varying bandwidth or histograms with varying parameters could reveal these details (see figure \ref{fig:faithfuldensadj}). The multi scale property of the shorth plot allows to combine the aspects in one picture.
 <<fig=true, echo=FALSE, label=Faithfuldensadj, include=FALSE, width=10, height=5>>=
 oldpar <- par(mfrow=c(1,2))
 plot(density(faithful$eruptions,adjust=0.3),main="", frame.plot=FALSE)
