@@ -1,3 +1,4 @@
+#$Id$
 lshorth <-
 function (x, probs = NULL,  plot = TRUE, na.rm=FALSE, ...) 
 {

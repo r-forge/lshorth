@@ -1,3 +1,4 @@
+#$Id$
 plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 		probs=NULL, 
 		main="Shorth", 
