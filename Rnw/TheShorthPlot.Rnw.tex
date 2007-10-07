@@ -65,7 +65,7 @@ D 69120 Heidelberg}%\\\bigskip\bigskip\bigskip\bigskip\bigskip \\ %
 }
 \email{gs@statlab.uni-heidelberg.de}
 \urladdr{http://lshorth.r-forge.r-project.org/}
-\keywords{shorth, distribution diagnostics, data analysis, peobability mass concentration}
+\keywords{shorth, distribution diagnostics, data analysis, probability mass concentration}
 
 \date{June 1992, published as technical report \cite{gs92shrth}.\\
 For quotation, please use the general reference \cite{gs94oned}.\\
@@ -517,7 +517,7 @@ Looking at a one dimensional marginal distribution ignores the process structure
 
 
 <<fig=true, echo=FALSE, label=Faithfuldens, include=FALSE>>=
-plot(density(faithful$eruptions),main="")
+plot(density(faithful$eruptions),main="", frame.plot=FALSE)
 rug(faithful$eruptions, quiet=TRUE)
 @
 %\begin{figure}[htb]
@@ -635,7 +635,7 @@ The  chondrite data set was used in to illustrate a strategy to hunt for modes i
 
 <<fig=true, echo=FALSE,label=Chondritedens, include=FALSE>>=
 chondrite <- read.table("/data/Chondrite")
-plot(density(chondrite$V1), main="")
+plot(density(chondrite$V1), main="", frame.plot=FALSE)
 rug(chondrite$V1, quiet=TRUE)
 @
 \begin{figure}[htb]
@@ -690,25 +690,25 @@ return(x1+x21+x31)
 oldpar<-par(mfrow=c(3,3))
 probs <- c(0.125,0.25,0.5,0.75,0.875)
 HHat<-rhhat(25)
-#hist(x25); plot(density(x25)); lshorth(x25,   rescale="neg", legend = NULL)
+#hist(x25); plot(density(x25),frame.plot=FALSE); lshorth(x25,   rescale="neg", legend = NULL)
 #hist(HHat,  xlab="HHat, n=25"); plot(density(HHat),  xlab="HHat, n=25"); lshorth(HHat,   probs=probs,  rescale="neg", frame.plot=FALSE,    ylim=c(1,0))
 HHat <-rhhat(50)
 hist(HHat, xlab="HHat, n=50")
-plot(density(HHat))
+plot(density(HHat),frame.plot=FALSE)
 rug(HHat)
 lshorth(HHat,  probs=probs, rescale="neg", ylim=c(1,0), frame.plot=FALSE,    legend = NULL)
 #HHat <-rhhat(100)
 #hist(HHat, xlab="HHat, n=100"); plot(density(HHat)); lshorth(HHat,   probs=probs,  rescale="neg", ylim=c(1,0), frame.plot=FALSE,  legend  = NULL)
 HHat <-rhhat(200)
 hist(HHat, xlab="HHat, n=200")
-plot(density(HHat))
+plot(density(HHat),frame.plot=FALSE)
 rug(HHat)
 lshorth(HHat,   probs=probs,  rescale="neg", ylim=c(1,0), frame.plot=FALSE,  legend  = NULL)
 #HHat <-rhhat(500)
 #hist(HHat, xlab="HHat, n=500"); plot(density(HHat)); lshorth(HHat,  probs=probs,   rescale="neg", ylim=c(1,0), frame.plot=FALSE,  legend  = NULL)
 HHat <-rhhat(1000)
 hist(HHat, xlab="HHat, n=1000")
-plot(density(HHat))
+plot(density(HHat),frame.plot=FALSE)
 rug(HHat)
 lshorth(HHat,   probs=probs,  rescale="neg", ylim=c(1,0), frame.plot=FALSE,  legend  = NULL)
 
