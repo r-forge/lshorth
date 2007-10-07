@@ -1,4 +1,4 @@
-#$Header: /u/math/j40/cvsroot/lectures/src/Rstuff/lshorth/Makefile,v 1.3 2007/08/12 11:56:07 j40 Exp $
+#$Id$
 SUBDIRS= SIntro statnat linmod tex_cookbook dataanalysis shared
 .PHONY: clean
 clean:

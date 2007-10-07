@@ -9,7 +9,7 @@
 % enc<-options(encoding="MacRoman")
 % #enc<-options(encoding="")
 % oldoptions<-options(width=72,prompt=">", continue="+")
-% oldoptions<-options(width=72,prompt="  ", continue="  "); setwd("/users/gs/documents/lectures/src/shorth/tex/"); Sweave(file= "../Rnw/lshorth.Rnw.tex", output="TheShorthPlot.tex", debug=TRUE, eps=FALSE);options(oldoptions)
+% oldoptions<-options(width=72,prompt="  ", continue="  "); setwd("/Users/gs/projects/rforge/lshorth/tex/"); Sweave(file= "../Rnw/TheShorthPlot.Rnw.tex", output="TheShorthPlot.tex", debug=TRUE, eps=FALSE);options(oldoptions)
 %
 
 %global flags for conditional builds
@@ -81,6 +81,13 @@ Typeset, with minor revisions: \today}                                          
 
 \begin{document}
 <<echo=FALSE, print=FALSE>>=
+save.RNGseed <- .Random.seed
+save.RNGkind <- RNGkind()
+save.URL <- "$URL$"
+save.Id <- "$Id$"
+save(save.Id, save.URL, save.RNGkind, save.RNGseed, file="../Rnw/saved.Rdata")
+rm(save.Id, save.URL, save.RNGkind, save.RNGseed)
+# old.state <- load(file="../Rnw/saved.Rdata")
 library(lshorth)
 @
 \begin{abstract}
@@ -654,7 +661,8 @@ lshorth(chondrite$V1,rescale="neg", frame.plot=FALSE,  legend="bottom", main="")
 For comparison, we add the silhouette plot suggested in \cite{dwmgs91jasa} as figure \ref{fig:chondritesilh}. The silhouette plot, specialised at detecting modes, clearly outperforms the shorth plot for this extremely small data set. But although the short plot is  a general purpose plot,
  it hints at a third mode at all levels. If it goes to level $12.5\%$ it can trace the third mode, and clearly identifies it for lower coverage levels.%
 \begin{figure}[htb]
-\includegraphics[width=0.5\linewidth]{../../shared/media/excess/excesschondrite1.jpg}
+\includegraphics[width=0.5\linewidth]{../www/priv/graphics/excesschondrite1.jpg}
+
 \caption{Silicate in chondrite: silhouette plot}\label{fig:chondritesilh}
 \end{figure}
 \clearpage
@@ -758,7 +766,7 @@ as for global features of the distribution. The good rate of convergence of the 
 \else
 \noindent
 {\tiny%
-\verb+$URL$+\\
+\verb|$URL$|\\
 \verb+$Revision$+\\
 \verb+$Id$+
 }
