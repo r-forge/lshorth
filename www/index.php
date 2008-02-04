@@ -29,7 +29,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 	<tr><td width="40">&nbsp;</td>
       
 	<tr>
-	<td><! --- R-Forge Logo --- >
+	<td><!--- R-Forge Logo -->
 	<a href="http://r-forge.r-project.org/"><img src="<?php echo $themeroot; ?>/images/logo.png" border="0" alt="R-Forge Logo" /></a> 
 	</td>
 
