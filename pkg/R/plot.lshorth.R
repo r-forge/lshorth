@@ -70,7 +70,7 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 	if (is.null(xlim)) xlim<-range(lshorthx$x[is.finite(lshorthx$x)])
 	
 	plot.new()
-	plot.window(xlim=range(lshorthx$x[is.finite(lshorthx$x)]),ylim=ylim, ...)
+	plot.window(xlim=xlim,ylim=ylim, ...)
 	axis(1)
 	axis(2)
 	title(main=main, xlab=xlab, ylab=ylab)
