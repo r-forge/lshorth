@@ -9,7 +9,7 @@
 % enc<-options(encoding="MacRoman")
 % #enc<-options(encoding="")
 % oldoptions<-options(width=72,prompt=">", continue="+")
-% oldoptions<-options(width=72,prompt="  ", continue="  "); setwd("/Users/gs/projects/rforge/lshorth/tex/"); Sweave(file= "../Rnw/TheShorthPlot.Rnw.tex", output="TheShorthPlot.tex", debug=TRUE, eps=FALSE);options(oldoptions)
+% oldoptions<-options(encoding="MacRoman", width=72,prompt="  ", continue="  "); setwd("/Users/gs/projects/rforge/lshorth/tex/"); Sweave(file= "../Rnw/TheShorthPlot.Rnw.tex", output="TheShorthPlot.tex", debug=TRUE, eps=FALSE);options(oldoptions)
 %
 
 %global flags for conditional builds
@@ -738,8 +738,12 @@ plotcond <- function(tlim,plim,main=NULL,...){
 oldpar <- par(mfrow=c(1,3))
 #plotcond(thigh,c(0,9999),main=expression(paste(T>= 32,  bquote(.(thigh[1])),degree ,"C")), legend=NULL)
 
-plotcond(tlow,c(0,9999),main=expression(paste(21.7<=T, ",",T<= 25.6,  degree ,"C")),legend="bottom")
-plotcond(tmed,c(0,9999),main=expression(paste(25.6<=T, ",",T<= 32,  degree ,"C")), legend=NULL)
+plotcond(tlow,c(0,9999),main=expression(paste(21.7, degree , "C" <=T,"" <= 25.6,  degree ,"C")),legend="bottom")
+#plotcond(tmed,c(0,9999),main=expression(paste(25.6<=T, ",",T<= 32,  degree ,"C")), legend=NULL)
+#plotcond(tmed,c(0,9999),main=expression(paste(25.6,  degree ,"C" <=T,T<= 32,  degree ,"C")), legend=NULL)
+plotcond(tmed,c(0,9999),main=expression(paste(25.6,  degree ,"C" <=T, ""<= 32,  degree ,"C")), legend=NULL)
+
+#plotcond(tmed,c(0,9999),main=expression(paste(25.6,  degree ,"C" <= "T" <= 32,  degree ,"C")), legend=NULL)
 plotcond(thigh,c(0,9999),main=expression(paste(T>= 32,  degree ,"C")), legend=NULL)
 par(oldpar)
 @
