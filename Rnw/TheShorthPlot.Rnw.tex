@@ -14,7 +14,7 @@
 
 %global flags for conditional builds
 %:flags
-\def\private{true}% comment out for public version
+%\def\private{true}% comment out for public version
 \def\solutions{true}% comment out to hide solutions
 \def\usehyperref{true}% comment out to skip hyperref
 
@@ -608,7 +608,7 @@ lognormal<- ru10000$lognormal; lshorth(lognormal, probs=ps,  rescale="neg", fram
 
 par(oldpar)
 @
-% for tilburg paper -1
+%: SPalpha01  for tilburg paper -1
 <<fig=TRUE, echo=FALSE,label=SPalpha01, height=12, width=8, include=FALSE>>=
 oldpar <-par(mfrow=c(3,3))
 ps <- c(0.125,0.25,0.5,0.75,0.875)
