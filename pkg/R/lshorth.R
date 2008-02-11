@@ -8,7 +8,7 @@ function (x, probs = NULL,  plot = TRUE, na.rm=FALSE, ...)
     # name must be set before removin NAs 
 
 	if (na.rm) {x <- x[is.finite(x)]} else {
-		if ( any(!is.finite(x))) stop("'x' contains infinite or missing values")}
+		if ( any(!is.finite(x))) stop("'x' contains infinite or missing values. Not yet supported.")}
 
     if (length(x)<1)
 	    stop("'x' must have positive length")
