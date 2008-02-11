@@ -1,5 +1,5 @@
 %!TEX root = ../tex/TheShorthPlot.tex
-%$Id: TheShorthPlot.Rnw.tex 44 2007-10-07 20:01:08Z gsawitzki $
+%$Id: TheShorthPlot.Rnw.tex 45 2007-10-28 10:12:05Z gsawitzki $
 % -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
 %
 %         TheShorthPlot
@@ -14,7 +14,7 @@
 
 %global flags for conditional builds
 %:flags
-\def\private{true}% comment out for public version
+%\def\private{true}% comment out for public version
 \def\solutions{true}% comment out to hide solutions
 \def\usehyperref{true}% comment out to skip hyperref
 
@@ -79,7 +79,7 @@ Typeset, with minor revisions: \today}                                          
 
 \makeindex
 
-\usepackage{/Library/Frameworks/R.framework/Versions/2.6/Resources/share/texmf/Sweave}
+\usepackage{/Library/Frameworks/R.framework/Resources/share/texmf/Sweave}
 \begin{document}
 \begin{abstract}
 We introduce the shorth plot for exploratory diagnostics of distributions. The shorth plot is a graphical representation of the length of the shorth, the shortest interval covering a certain fraction of the distribution. Localising the shorth, i.e. requiring it to contain specific data points, makes it usable for diagnostics.
@@ -345,6 +345,8 @@ Figure \ref{fig:s05unln} gives examples of the shorth plot for the uniform, norm
 \todo{legend to bottomleft?}
 \begin{figure}[htb]
 % for Tilburg paper
+% for Tilburg paper
+
 %lognormal<- exp(rnorm(n)); lshorth(lognormal, probs=ps,  rescale="neg", frame.plot=FALSE,   legend ="topright", main=NULL);
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-s05unln}
 \caption{ $x \mapsto  \ S_{n,{0.5}}(x)$
@@ -378,6 +380,7 @@ Varying the coverage level $\alpha$ as in figure \ref{fig:s05unlnalpha} gives an
 %
 \begin{figure}[htb]
 % for tilburg paper
+%: SPalpha01  for tilburg paper -1
 %\caption{ $x \mapsto 1/S_{\alpha}(x)$ for a uniform, a normal and a log-normal distribution with sample sizes
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-s05unlnalpha}
 %\caption{ $x \mapsto - \ \frac{S_{\alpha}(x)}{\min_{x\prime} S_{0.5}(x\prime)}$
@@ -551,8 +554,8 @@ as for global features of the distribution. The good rate of convergence of the 
 \noindent
 {\tiny%
 \verb|$URL: svn+ssh://gsawitzki@svn.r-forge.r-project.org/svnroot/lshorth/Rnw/TheShorthPlot.Rnw.tex $|\\
-\verb+$Revision: 44 $+\\
-\verb+$Id: TheShorthPlot.Rnw.tex 44 2007-10-07 20:01:08Z gsawitzki $+
+\verb+$Revision: 45 $+\\
+\verb+$Id: TheShorthPlot.Rnw.tex 45 2007-10-28 10:12:05Z gsawitzki $+
 }
 \fi
 
