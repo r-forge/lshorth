@@ -635,6 +635,33 @@ lognormal<- ru10000$lognormal; lshorth(lognormal, probs=ps, xlim=c(0,10),  resca
 
 par(oldpar)
 @
+%: SPalpha02  for tilburg paper -1
+<<fig=TRUE, echo=FALSE,label=SPalpha02, height=12, width=8, include=FALSE>>=
+oldpar <-par(mfrow=c(3,3))
+ps <- c(0.125,0.25,0.5,0.75,0.875)
+uniform <-ru50$uniform;  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL);
+normal<-ru50$normal; lshorth(normal, probs=ps,  xlim=c(-3,3), rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
+lognormal<- ru50$lognormal; lshorth(lognormal, probs=ps,    rescale="neg", frame.plot=FALSE,  legend =NULL, main=NULL);
+
+n<-200
+uniform <-ru200$uniform;  lshorth(uniform, probs=ps,  rescale="neg",  frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL);
+normal<-ru200$normal; lshorth(normal, probs=ps,   xlim=c(-3,3),  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL)
+lognormal<- ru200$lognormal; lshorth(lognormal, probs=ps,  xlim=c(0,8),  ylim=c(8,0),  rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL);
+
+n<-10000
+uniform <-ru10000$uniform; 
+lsv <- lshorth(uniform, probs=ps, plot=FALSE)
+lsv$lshorth <- matrix(rep(ps,n), nrow=n, ncol=length(ps),byrow=TRUE)
+plot.lshorth(lsv, rescale="neg", frame.plot=FALSE, 
+legend = NULL,  ylim=c(1,0), main=NULL, rug=FALSE, xlab="uniform");
+normal<-ru10000$normal; lshorth(normal, probs=ps,    xlim=c(-3,3), rescale="neg", frame.plot=FALSE,  legend = NULL, main=NULL, rug=FALSE, xlab="normal")
+lognormal<- ru10000$lognormal; lshorth(lognormal, probs=ps, xlim=c(0,8),  ylim=c(8,0), rescale="neg", frame.plot=FALSE, legend="bottomleft", main=NULL, rug=FALSE, xlab="lognormal");
+
+
+par(oldpar)
+@
 %\caption{ $x \mapsto 1/S_{\alpha}(x)$ for a uniform, a normal and a log-normal distribution with sample sizes
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-s05unlnalpha}
 %\caption{ $x \mapsto - \ \frac{S_{\alpha}(x)}{\min_{x\prime} S_{0.5}(x\prime)}$
