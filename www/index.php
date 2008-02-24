@@ -179,6 +179,15 @@ Technical notes describing the shorth plot and its statistical background are in
 The technical notes will be installed as doc/TheShorthPlot.pdf along with the package.
 </div>
 
+<div style="margin-top:40px; margin-bottom:40px; ">
+The statistical theory is in
+<dl>
+<dt>J. Einmahl, M. Gantner, G. Sawitzki: <a href="http://arno.uvt.nl/show.cgi?fid=71221">The Shorth Plot.</a> </dt><dd>Tilburg University CentER Discussion Papers. 2008.<br>
+</dd>
+</dl>
+The technical notes will be installed as doc/TheShorthPlot.pdf along with the package.
+</div>
+
 
 </p>
 <p>
