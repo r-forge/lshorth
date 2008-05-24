@@ -683,6 +683,15 @@ par(oldpar)
 As a first example, we use the eruption durations of the Old Faithful geyser. The data is just one component of a bivariate time series data set. 
 Looking at a one dimensional marginal distribution ignores the process structure. However these data have been used repeatedly to illustrate smoothing algorithms (figure \ref{fig:faithfuldens}), and we reuse it to illustrate our approach (see figure \ref{fig:faithful}). This is a good-natured data set showing two distinct nodes  with sizeable observation counts, and some overall skewness.
 
+%<<fig=TRUE, echo=FALSE,label=SPalpha02, height=12, width=8, include=FALSE>>=
+<<fig=true, echo=FALSE,  label=Faithfulhist, include=FALSE>>=
+hist(faithful$eruptions,main="Old Faithful Geyser\nEruption Durations", xlab="duration")
+#hist(faithful$eruptions,main="Old Faithful Geyser\nEruption Durations", xlab="duration",xlim=c(0,6))
+#rug(faithful$eruptions, quiet=TRUE)
+@
+<<fig=true, echo=FALSE,   label=Faithfulbox, include=FALSE>>=
+boxplot(faithful$eruptions,main="Old Faithful Geyser\nEruption Durations",frame.plot=FALSE, horizontal=TRUE)
+@
 
 <<fig=true, echo=FALSE, label=Faithfuldens, include=FALSE>>=
 plot(density(faithful$eruptions),main="", frame.plot=FALSE)
