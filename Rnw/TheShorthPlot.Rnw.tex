@@ -2,7 +2,7 @@
 %$Id$
 % -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
 %
-%         TheShorthPlot
+%         TheShorthPlot {Technical Report}
 %  
 %  Adjust the path names below and run the R command to process this file
 %
@@ -199,7 +199,7 @@ legend("bottomright", expression(paste("level curves for P([a,b]) = const = ",al
 	
 contourf(pnorm,main="normal distribution")
 
-n<-50
+n<-100
 xsample <-sort(rnorm(n))
 empF <- function(x){
 	f1<-function(xx){length(xsample[xsample<=xx])/n}
@@ -211,7 +211,7 @@ rug(xsample, side=2, quiet=TRUE)
 rug(xsample, side=3, quiet=TRUE)
 rug(xsample, side=4, quiet=TRUE)
 
-mtext("normal sample, n=100")
+mtext(paste("normal sample, n=",n))
 
 par(oldpar)
 @
@@ -694,7 +694,7 @@ boxplot(faithful$eruptions,main="Old Faithful Geyser\nEruption Durations",frame.
 @
 
 <<fig=true, echo=FALSE, label=Faithfuldens, include=FALSE>>=
-plot(density(faithful$eruptions),main="", frame.plot=FALSE)
+plot(density(faithful$eruptions),main="Eruption duration [min]", frame.plot=FALSE)
 rug(faithful$eruptions, quiet=TRUE)
 @
 %\begin{figure}[htb]
