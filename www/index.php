@@ -198,6 +198,6 @@ See also:
 </p>
 <p>The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
 </div>
-
+php
 </body>
 </html>
