@@ -1,24 +1,12 @@
-
-<!-- This is the project specific website template -->
-<!-- It can be changed as liked or replaced by other content -->
-
-<?php
-
-$domain=ereg_replace('[^\.]*\.(.*)$','\1',$_SERVER['HTTP_HOST']);
-$group_name=ereg_replace('([^\.]*)\..*$','\1',$_SERVER['HTTP_HOST']);
-$themeroot='http://r-forge.r-project.org/themes/rforge/';
-
-echo '<?xml version="1.0" encoding="UTF-8"?>';
-?>
-<!DOCTYPE html
-	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en   ">
-
-  <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <base href="http://www.math.uni-heidelberg.de/fakultaet/">
+  <meta http-equiv="content-type"
+ content="text/html; charset=iso-8859-15">
+  <title>Fakultät für Mathematik und Informatik</title>
 	<title><?php echo $group_name; ?></title>
-	<link href="<?php echo $themeroot; ?>styles/estilo1.css" rel="stylesheet" type="text/css" />
+	<link href="http://r-forge.r-project.org/themes/rforge/styles/estilo1.css" rel="stylesheet" type="text/css" />
   </head>
 
 <body leftmargin="0" topmargin="0" link="#0076d5" marginheight="0" marginwidth="0" text="#000000" vlink="#6a76d5">
@@ -30,7 +18,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
       
 	<tr>
 	<td><!--- R-Forge Logo -->
-	<a href="http://r-forge.r-project.org/"><img src="<?php echo $themeroot; ?>/images/logo.png" border="0" alt="R-Forge Logo" /></a> 
+	<a href="http://r-forge.r-project.org/"><img src="http://r-forge.r-project.org/themes/rforge//images/logo.png" border="0" alt="R-Forge Logo" /></a> 
 	</td>
 
 	<td nowrap="nowrap">
@@ -131,6 +119,28 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
     <td>&nbsp;</td>
     <td>
 
+<!--
+		 start tabs model
+
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+					<td valign="top" width="10" background="/themes/gforge/images/theme-bottomtab-end-selected.png"><img src="/themes/gforge/images/clear.png" height="25" width="10" alt="" /></td><td background="/themes/gforge/images/theme-bottomtab-selected-bg.png" width="14%" align="center"><a class="tabsellink" href="/projects/bertin/">Summary</a></td>
+					<td colspan="2" valign="top" width="20" background="/themes/gforge/images/theme-bottomtab-selected-notselected.png"><img src="/themes/gforge/images/clear.png" height="2" width="20" alt="" /></td><td background="/themes/gforge/images/theme-bottomtab-notselected-bg.png" width="14%" align="center"><a class="tablink" href="/forum/?group_id=99">Forums</a></td>
+
+					<td colspan="2" valign="top" width="20" background="/themes/gforge/images/theme-bottomtab-notselected-notselected.png"><img src="/themes/gforge/images/clear.png" height="2" width="20" alt="" /></td><td background="/themes/gforge/images/theme-bottomtab-notselected-bg.png" width="14%" align="center"><a class="tablink" href="/tracker/?group_id=99">Tracker</a></td>
+					<td colspan="2" valign="top" width="20" background="/themes/gforge/images/theme-bottomtab-notselected-notselected.png"><img src="/themes/gforge/images/clear.png" height="2" width="20" alt="" /></td><td background="/themes/gforge/images/theme-bottomtab-notselected-bg.png" width="14%" align="center"><a class="tablink" href="/mail/?group_id=99">Lists</a></td>
+					<td colspan="2" valign="top" width="20" background="/themes/gforge/images/theme-bottomtab-notselected-notselected.png"><img src="/themes/gforge/images/clear.png" height="2" width="20" alt="" /></td><td background="/themes/gforge/images/theme-bottomtab-notselected-bg.png" width="14%" align="center"><a class="tablink" href="/news/?group_id=99">News</a></td>
+					<td colspan="2" valign="top" width="20" background="/themes/gforge/images/theme-bottomtab-notselected-notselected.png"><img src="/themes/gforge/images/clear.png" height="2" width="20" alt="" /></td><td background="/themes/gforge/images/theme-bottomtab-notselected-bg.png" width="14%" align="center"><a class="tablink" href="/scm/?group_id=99">SCM</a></td>
+					<td colspan="2" valign="top" width="20" background="/themes/gforge/images/theme-bottomtab-notselected-notselected.png"><img src="/themes/gforge/images/clear.png" height="2" width="20" alt="" /></td><td background="/themes/gforge/images/theme-bottomtab-notselected-bg.png" width="14%" align="center"><a class="tablink" href="/R/?group_id=99">	R Packages</a></td>
+					<td valign="top" width="10" background="/themes/gforge/images/theme-bottomtab-notselected-end.png"><img src="/themes/gforge/images/clear.png" height="2" width="10" alt="" /></td></tr><tr><td colspan="3" height="1" bgcolor="white"><img src="/themes/gforge/images/clear.png" height="1" width="10" /></td><td colspan="18" height="1" bgcolor="#909090"><img src="/themes/gforge/images/clear.png" height="1" width="10" /></td></tr>
+
+		</table> 
+
+		 end tabs
+</td>
+
+-->
+
 <!-- start tabs -->
 
 <table border="0" cellpadding="0" cellspacing="0" width="100%"><!-- table 9 -->
@@ -153,19 +163,14 @@ echo '<?xml version="1.0" encoding="UTF-8"?>';
 <!-- get project title  -->
 <!-- own website starts here, the following may be changed as you like -->
 
-<?php if ($handle=fopen('http://'.$domain.'/export/projtitl.php?group_name='.$group_name,'r')){
-$contents = '';
-while (!feof($handle)) {
-$contents .= fread($handle, 8192);
-}
-fclose($handle);
-echo $contents; } ?>
+
 
 <div style="margin:20px">
 <!-- end of project description -->
 <div style="margin-top:40px; margin-bottom:40px; ">
 <strong>To install this package directly within R type </strong><br>
 &nbsp;&nbsp;&nbsp;<code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org")</code></p>
+
 <p><strong>To install the recent package from source directly within R type </strong><br>
 &nbsp;&nbsp;&nbsp;<code>install.packages("<i>lshorth</i>",repos="http://r-forge.r-project.org",type="source")</code></p>
 </div>
@@ -173,10 +178,20 @@ echo $contents; } ?>
 <div style="margin-top:40px; margin-bottom:40px; ">
 Technical notes describing the shorth plot and its statistical background are in
 <dl>
-<dt>G. Sawitzki: <a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">The Shorth Plot.</a> </dt><dd>Technical notes. StatLab Heidelberg 1992 (rev. 2007).<br>
+<dt>G. Sawitzki: <a href="http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf">The Shorth Plot.</a> </dt>
+<dd>Technical notes. StatLab Heidelberg 1992 (rev. 2007).<br>
 </dd>
 </dl>
 The technical notes will be installed as doc/TheShorthPlot.pdf along with the package.
+</div>
+
+<div style="margin-top:40px; margin-bottom:40px; ">
+The statistical theory is in
+<dl>
+<dt>J. Einmahl, M. Gantner, G. Sawitzki: <a href="http://arno.uvt.nl/show.cgi?fid=71221">The Shorth Plot.</a> </dt>
+<dd>Tilburg University CentER Discussion Papers. 2008.<br>
+</dd>
+</dl>
 </div>
 
 
@@ -184,14 +199,22 @@ The technical notes will be installed as doc/TheShorthPlot.pdf along with the pa
 <p>
 See also:
 <dl>
-<dt> G. Sawitzki: <ahref="http://statlab.uni-heidelberg.de/reports/by.series/report.08.pdf">DiagnosticPlots for One-Dimensional Data.</a> </dt><dd>in: Computational Statistics. Papers collected on the Occasion of the25th Conference<br> on Statistical Computing at Schloss Reisensburg.<br>(Edited by P.Dirschedl &amp; R.Ostermann for the Working Groups ... ...)<br> Heidelberg, Physica, 1994, ISBN 3-7908-0813-x, p. 237-258. </dd>
+<dt> G. Sawitzki: <a
+href="http://statlab.uni-heidelberg.de/reports/by.series/report.08.pdf">Diagnostic
+Plots for One-Dimensional Data.</a> </dt>
+<dd>in: Computational Statistics. Papers collected on the Occasion of the
+25th Conference<br> on Statistical Computing at Schloss Reisensburg.<br>
+(Edited by P.Dirschedl &amp; R.Ostermann for the Working Groups ... ...
+)<br> Heidelberg, Physica, 1994, ISBN 3-7908-0813-x, p. 237-258. </dd>
 </dl>
 <br>
-</p>
+</p>
+
+
 <p>The <strong>project summary page</strong> you can find <a href="http://<?php echo $domain; ?>/projects/<?php echo $group_name; ?>/"><strong>here</strong></a>. </p>
 </div>
 <br>
-html
+html/ 2009-07-06gs
 <br>
 </body>
 </html>
