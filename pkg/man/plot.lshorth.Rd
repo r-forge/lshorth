@@ -26,7 +26,7 @@ plot.lshorth(x, y, xlim = NULL, ylim = NULL,
   \item{frame.plot}{a logical indicating whether a box should be drawn around the plot.}
   \item{legend}{position, passed to \code{legend}, or \code{NULL}.}
   \item{rug}{ logical. If TRUE, a \code{rug} is included. }
-  \item{rescale} {rescaling method:one of "none","neg","std","inv".}
+  \item{rescale}{rescaling method:one of "none","neg","std","inv".}
   \item{\dots}{ additional arguments passed to plot.}
 }
 \details{
