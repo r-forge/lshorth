@@ -1,0 +1,7 @@
+export(
+    lshorth,
+    plot.lshorth
+    )
+
+S3method(plot, lshorth)
+
