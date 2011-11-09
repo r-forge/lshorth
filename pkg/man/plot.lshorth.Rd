@@ -11,7 +11,7 @@ plot.lshorth(x, y, xlim = NULL, ylim = NULL,
 		frame.plot=TRUE,
 		legend="topright",
 		rug=TRUE,
-		rescale="std", ...)
+		rescale="neg", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -1,4 +1,4 @@
-%\encoding{Latin-1}
+\encoding{UTF-8}
 \name{lshorth-package}
 \alias{lshorth-package}
 \docType{package}
@@ -22,7 +22,7 @@ The length of the shorth however has better convergence and, if localised, can b
 
 Maintainer: G. Sawitzki \email{gs@statlab.uni-heidelberg.de}}
 \references{
-Grübel, R.: The Length of the Shorth,  \emph{Annals of Statistics} \bold{16.2}, 1988, pp 619--628
+GrÃ¼bel, R.: The Length of the Shorth,  \emph{Annals of Statistics} \bold{16.2}, 1988, pp 619--628
 
 
 Sawitzki, G.: Diagnostic Plots for One-Dimensional Data. In:

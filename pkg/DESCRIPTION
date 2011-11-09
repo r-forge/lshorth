@@ -1,8 +1,8 @@
 Package: lshorth
 Type: Package
 Title: The Length of the Shorth
-Version: 0.1-3
-Date: 2007-08-28
+Version: 0.1-4
+Date: 2011-11-09
 Author: G. Sawitzki
 Maintainer: G. Sawitzki <gs@statlab.uni-heidelberg.de>
 Description: Calculates the (localized) length of the shorth
