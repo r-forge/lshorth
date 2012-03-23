@@ -4,7 +4,7 @@ cd "/Users/gs/projects/rforge/lshorth/"
 
 # R cmds for ad hoc construction
 # setwd("/Users/gs/projects/rforge/lshorth/")
-# install.packages("/Users/gs/projects/rforge/lshorth/lshorth_0.1-4.tar.gz", repos=NULL, type="source")
+# install.packages("/Users/gs/projects/rforge/lshorth/lshorth_0.1-5.tar.gz", repos=NULL, type="source")
 
 # install package
 
@@ -16,6 +16,8 @@ R CMD BUILD --compact-vignettes pkg
 R CMD INSTALL lshorth
 # generate a pdf help file
 rm lshorth.pdf; R CMD Rd2dvi -o lshorth.pdf --pdf --title="lshorth" pkg
+#
+rm lshorth.pdf; R CMD Rd2dvi -o lshorth.pdf --pdf --internal --title="lshorth" pkg
 
 ##
 setwd("/Volumes/Untitled/lshorth1")cd 
@@ -33,7 +35,7 @@ tools::compactPDF("/Users/gs/projects/rforge/lshorth/pkg/inst/doc/lshorthR.pdf")
 ####
 # /Library/Frameworks/R.framework/Versions/2.14/Resources/bin/qpdf
  detach("package:lshorth", unload=TRUE)
-  install.packages("lshorth",repos="http://r-forge.r-project.org",type="source")
+  install.packages("lshorth", repos="http://r-forge.r-project.org", type="source")
  remove.packages("lshorth")
 install.packages("/Users/gs/projects/rforge/lshorth/lshorth_0.1-52.tar.gz",repos=NULL,type="source")
 # install.packages("/Users/gs/projects/rforge/lshorth/lshorth_0.1-52.tar.gz",repos=NULL,type="source",INSTALL_opts="--byte-compile")

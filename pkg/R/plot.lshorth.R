@@ -5,7 +5,7 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 		xlab=NULL, 
 		ylab=NULL,
 		frame.plot=TRUE,
-		legend="topright", 
+		legendpos="topright", 
 		rug=TRUE,
 		rescale="neg", ...)
 {
@@ -83,8 +83,8 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 	#	lwd <- ceiling(6*(0.5-abs(probs[px]-0.5)))
 		lines(lshorthx$x,shorthmy[px,],lwd=lwd[px],...)
 	}
-	if (!is.null(legend)){
-	temp <- legend(legend, legend = rep(" ",length(probs)),
+	if (!is.null(legendpos)){
+	temp <- legend(legendpos, legend = rep(" ",length(probs)),
                text.width = strwidth("0.0000"),
                lwd = lwd, xjust = 1, yjust = 1,
                title = expression(Coverage *" "* alpha),
@@ -95,3 +95,14 @@ plot.lshorth <- function(x, y, xlim = NULL, ylim = NULL,
 	invisible(shorthm)
 }
 
+legend.lshorth <- function(legendpos,probs, ...){
+	lwd <- ceiling(6*(0.5-abs(probs-0.5)))
+	
+	temp <- legend(legendpos, legend = rep(" ",length(probs)),
+               text.width = strwidth("0.0000"),
+               lwd = lwd, xjust = 1, yjust = 1,
+               title = expression(Coverage *" "* alpha),
+               inset=0.05, ...)
+	text(temp$rect$left + temp$rect$w, temp$text$y,
+     format(probs,digits=3), pos=2)
+	}

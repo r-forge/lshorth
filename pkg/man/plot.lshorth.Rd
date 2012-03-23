@@ -3,13 +3,22 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ plot.lshorth }
 \description{Plot local shorth length}
-\usage{
-plot.lshorth(x, y, xlim = NULL, ylim = NULL,
+%\usage{
+%plot.lshorth(x, y, xlim = NULL, ylim = NULL,
+%        probs = NULL,
+%        main = "Shorth", xlab=NULL, 
+%		ylab=NULL,
+%		frame.plot=TRUE,
+%		legendpos="topright",
+%		rug=TRUE,
+%		rescale="neg", ...)
+%}
+\usage{\method{plot}{lshorth}(x, y, xlim = NULL, ylim = NULL,
         probs = NULL,
         main = "Shorth", xlab=NULL, 
 		ylab=NULL,
 		frame.plot=TRUE,
-		legend="topright",
+		legendpos="topright",
 		rug=TRUE,
 		rescale="neg", ...)
 }
@@ -24,7 +33,7 @@ plot.lshorth(x, y, xlim = NULL, ylim = NULL,
   \item{xlab}{ a label for the \code{x} axis.}
   \item{ylab}{ a label for the \code{y} axis.}
   \item{frame.plot}{a logical indicating whether a box should be drawn around the plot.}
-  \item{legend}{position, passed to \code{legend}, or \code{NULL}.}
+  \item{legendpos}{position, passed to \code{legend}, or \code{NULL} for no legend.}
   \item{rug}{ logical. If TRUE, a \code{rug} is included. }
   \item{rescale}{rescaling method:one of "none","neg","std","inv".}
   \item{\dots}{ additional arguments passed to plot.}
@@ -32,6 +41,8 @@ plot.lshorth(x, y, xlim = NULL, ylim = NULL,
 \details{
   For each point in \code{x} the length of the shortest interval covering a
   fraction \code{p} of the data is marked.
+  
+  The internal function \code{legend.lshorth()} gives a model how to customize the legend.
 }
 \value{
   an object of class \code{lshorth}. See {\code{\link{lshorth}}}.
@@ -41,8 +52,12 @@ plot.lshorth(x, y, xlim = NULL, ylim = NULL,
 \note{ Scaling still under experiment}
 
 %\seealso{\code{\link{lshorth}}}
-%\examples{
-%}
+\examples{
+library(lshorth)
+
+shorthnorm <- lshorth(rnorm(50), plot=FALSE)
+plot.lshorth(shorthnorm, legend="bottom")
+}
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ hplot }
