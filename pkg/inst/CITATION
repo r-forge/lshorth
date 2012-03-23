@@ -1,0 +1,26 @@
+citHeader("To cite the 'lshorth' package in publications use:")
+
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
+
+bibentry("manual",
+	author = "G. Sawitzki",
+	note = vers,
+	Title = "lshorth: The Length of the Shorth",
+	year = year,
+	url= "http://lshorth.r-forge.r-project.org/TheShorthPlot.pdf",
+	textversion="G. Sawitzki. lshorth: The Length of the Shorth. Technical Note, 1994-2012" )
+
+
+bibentry("incollection",
+	Author = "G. Sawitzki",
+	Booktitle = "Computational Statistics. Papers Collected on the Occasion of the 25th Conference on Statistical Computing at Schloss Reisensburg.",
+	Editor = "P. Dirschedl and R. Ostermann",
+	Pages = "237--258",
+	Publisher = "Physica-Verlag, Heidelberg",
+	Title = "Diagnostic Plots for One-Dimensional Data",
+	Url = "http://statlab.uni-heidelberg.de/reports/by.series/report.08.pdf",
+	Year = 1994,
+	textversion="G. Sawitzki. Diagnostic Plots for One-Dimensional Data. In: P. Dirschedl and R. Ostermann (eds.) Computational Statistics. Physica: Heidelberg 1994."
+)
