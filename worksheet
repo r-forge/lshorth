@@ -1,3 +1,9 @@
+#$HeadURL$
+#$Id$
+#$Revision$
+#$Date$
+#$Author$
+
 # a commom worksheet for lshorth
 cd ~/projects/rforge/ # lshorth ## a directory containing lshorth
 cd "/Users/gs/projects/rforge/lshorth/"
@@ -9,6 +15,11 @@ cd "/Users/gs/projects/rforge/lshorth/"
 # install package
 
 cd /Users/gs/projects/rforge/lshorth
+#!/bin/sh
+svn propset svn:keywords "Date Author Id Revision HeadURL" pkg/R/*.R
+svn propset svn:keywords "Date Author Id Revision HeadURL" pkg/man/*.Rd
+svn propset svn:keywords "Date Author Id Revision HeadURL" pkg/DESCRIPTION
+svn propset svn:keywords "Date Author Id Revision HeadURL" worksheet
 R CMD CHECK pkg
 R CMD BUILD --compact-vignettes pkg
 
