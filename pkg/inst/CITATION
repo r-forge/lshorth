@@ -24,3 +24,16 @@ bibentry("incollection",
 	Year = 1994,
 	textversion="G. Sawitzki. Diagnostic Plots for One-Dimensional Data. In: P. Dirschedl and R. Ostermann (eds.) Computational Statistics. Physica: Heidelberg 1994."
 )
+
+
+bibentry("article",
+	Author = "John Einmahl and Maria Gantner and G\"{u}nther Sawitzki",
+	Journal = "Journal of Computational and Graphical Statistics",
+	Month = "March",
+	Number = "1",
+	Title = "The Shorth Plot",
+	Pages = "62-73",
+	Volume = "19",
+	Year = "2010",
+	textversion="J. Einmahl, M. Gantner and G. Sawitzki. The Shorth Plot. Journal of Computational and Graphical Statistics 19 (2010), 62-73."
+	)
