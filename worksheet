@@ -36,7 +36,9 @@ tools::compactPDF("/Users/gs/projects/rforge/lshorth/pkg/inst/doc/lshorthR.pdf")
 # /Library/Frameworks/R.framework/Versions/2.14/Resources/bin/qpdf
  detach("package:lshorth", unload=TRUE)
   install.packages("lshorth", repos="http://r-forge.r-project.org", type="source")
- remove.packages("lshorth")
+	remove.packages("lshorth")
+	remove.packages("lshorth", lib="/Library/Frameworks/R.framework/Versions/2.14/Resources/library")
+
 install.packages("/Users/gs/projects/rforge/lshorth/lshorth_0.1-52.tar.gz",repos=NULL,type="source")
 # install.packages("/Users/gs/projects/rforge/lshorth/lshorth_0.1-52.tar.gz",repos=NULL,type="source",INSTALL_opts="--byte-compile")
 
