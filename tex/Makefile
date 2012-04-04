@@ -12,12 +12,17 @@ clean:
 	done
 
 pdf:
-	@for d in * ; do \
-	 if test -d  $${d} ; then \
-	 echo directory $${d}; \
-	  if (test "$${d}" != CVS); then	  (cd $${d} && $(MAKE) $@;) fi;\
-	  fi \
-	done
+	pdflatex TheShorthPlot
+	pdflatex TheShorthPlot
+	bibtex TheShorthPlot
+	makeindex TheShorthPlot || echo "## no index"
+	pdflatex TheShorthPlot
+	#makeindex TheShorthPlot-mer.nlo -s nomencl.ist -o TheShorthPlot.nls || echo "## no name index"
+	#pdflatex TheShorthPlot
+	thumbpdf TheShorthPlot
+	pdflatex TheShorthPlot
+	mv TheShorthPlot.pdf TheShorthPlot_bak.pdf
+	qpdf TheShorthPlot_bak.pdf TheShorthPlot.pdf
 	
 check:
 	R CMD check ~/Documents/lectures/src/Rstuff/lshorth

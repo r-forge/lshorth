@@ -21,13 +21,15 @@ svn propset svn:keywords "Date Author Id Revision HeadURL" pkg/man/*.Rd
 svn propset svn:keywords "Date Author Id Revision HeadURL" pkg/DESCRIPTION
 svn propset svn:keywords "Date Author Id Revision HeadURL" worksheet
 R CMD CHECK pkg
-R CMD BUILD --compact-vignettes pkg
+R CMD BUILD --compact-vignettes pkg --no-multiarch
 
 # install package
 R CMD INSTALL lshorth
+R CMD INSTALL --no-multiarch lshorth_0.1-6.tar.gz 
 # generate a pdf help file
 rm lshorth.pdf; R CMD Rd2dvi -o lshorth.pdf --pdf --title="lshorth" pkg
 #
+rm lshorth.pdf; R CMD Rd2pdf -o lshorth.pdf  --internals --title="lshorth" pkg
 rm lshorth.pdf; R CMD Rd2dvi -o lshorth.pdf --pdf --internal --title="lshorth" pkg
 
 ##

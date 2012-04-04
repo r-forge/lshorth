@@ -130,7 +130,7 @@ distribution.
 \cite[p. 50]{ANDREWSD1972Robust-Estimati}  \cite[p. 767]{Shorack1986Empirical-proce}. Moreover, the shorth interval is not well defined, since there may be several competing intervals. 
 
 
-However, as Grübel \cite{grbl88lshrt} has pointed out, the length of the shorth has a convergence rate of $n^{-\frac{1}{2}}$ with a Gaussian limit. The critical conditions are that the shorth interval is sufficiently pronounced (see \cite[section 3.3]{grbl88lshrt}).  Essentially this means that the shorth interval must not be in a flat part of the distribution. While the shorth position is not a good candidate as a location estimator, the length of the shorth qualifies as a reasonable candidate for scale estimation.
+However, as Gr\"ubel \cite{grbl88lshrt} has pointed out, the length of the shorth has a convergence rate of $n^{-\frac{1}{2}}$ with a Gaussian limit. The critical conditions are that the shorth interval is sufficiently pronounced (see \cite[section 3.3]{grbl88lshrt}).  Essentially this means that the shorth interval must not be in a flat part of the distribution. While the shorth position is not a good candidate as a location estimator, the length of the shorth qualifies as a reasonable candidate for scale estimation.
 
 %:def: shorth
 The length of the shorth is a functional which can be localised, thus providing a tool for local diagnostics.
@@ -159,7 +159,7 @@ $\alpha$, i.e. $\prob{I} \geq \alpha$. Going to the empirical version replaces t
 The theoretical curves for the Gaussian distribution and for a  Gaussian sample are shown in figure \ref{fig:level}.
  Localising the shorth at a point $x$ restricts optimisation to the top left quadrant anchored at $a=b=x$.
  
-\gsnote{paragraph added}The increasingly flat level curves for $P([a,b]) = const$  in figure \ref{fig:level} illustrate why the location of the shorth does not have satisfactory stattistical properties while the length of the shorth has good asymptotic behaviour.
+\gsnote{paragraph added}The increasingly flat level curves for $P([a,b]) = const$  in figure \ref{fig:level} illustrate why the location of the shorth does not have satisfactory statistical properties while the length of the shorth has good asymptotic behaviour.
 
 \todo{align scales for plots where reasonable}
 <<fig=TRUE, echo=FALSE,label=level, height=6, width=12, include=FALSE>>=
@@ -217,7 +217,7 @@ par(oldpar)
 @
 \begin{figure}[htb]
 \includegraphics[width=1.0\linewidth]{TheShorthPlot-level}
-\caption{The shorth length as an optimisation problem: minimize $| [a,b] |,$ 
+\caption{The shorth length as an optimisation problem: minimise $| [a,b] |,$ 
 under the restriction $P([a,b] ) \geq \alpha$. Localising at $x$ restricts the optimisation  to the quadrant top left of $x$ (shaded grey).}
 \label{fig:level}
 \end{figure}
@@ -230,7 +230,7 @@ $$
 %\delta \longmapsto \sup_{y}  \{P(I): | I | \geq \delta \}
 together with its localised and/or empirical version.
 %
-The relation between the shorth length and its inverse is extensively used in Gr\"ubel's analysis of the asymptotics  of the (unlocalised) shorth. A modified version of Gr\"ubel's proof carries over to the localised shorth, provided there are no flat parts in the distribution, giving a  $n^{-\frac{1}{2}}$ asymptotics of the empirical shorth length to the theoretical shorth length.
+The relation between the shorth length and its inverse is extensively used in Gr\"ubel's analysis of the asymptotics  of the (un-localised) shorth. A modified version of Gr\"ubel's proof carries over to the localised shorth, provided there are no flat parts in the distribution, giving a  $n^{-\frac{1}{2}}$ asymptotics of the empirical shorth length to the theoretical shorth length.
 \todo{extend discussion of concentration function}
 
 \subsection{Elementary Properties}
@@ -399,7 +399,7 @@ The only difference is the scale labeling.
 %\caption{Shorth length and standardised shorth length for the same sample of 50 normal variates as above ($\alpha=0.5$).}
 %\label{fig:sstd}
 %\end{figure}
-In these notes, we do not use standardized shorth length, but use the original scales.
+In these notes, we do not use standardised shorth length, but use the original scales.
 
 
 Instead of the exact interpolation
@@ -748,7 +748,7 @@ to modes with information about the mixture proportions. }\label{fig:faithfulden
 %
 \subsection{Melbourne Temperature Data}
 %
-R. Hyndman pointed out the bifurcation to bimodality in the Melbourne temperature data set \cite{Hyndman1996Estimating-and-}. We use an extended version of the data set\footnote{Melbourne temperature data 1955-2007, provided by the Bureau of Meteorology, Victorian Climate Services Centre, Melbourne.} and analyze the day by day difference in temperature   at 15h (the daily report reference time) conditioned on today's emperature and pressure at the reference time.  The shorth plot view is in figure \ref{fig:melbournet}. The full picture reveals a cusp-type bifurcation. Figure \ref{fig:melbourne} shows the shorth plot for the temperature difference at 15h (the daily report reference time) to next day's temperature, conditioned on today's temperature and pressure. It reveals the modality split as well as the skewness which is pressure dependent.
+R. Hyndman pointed out the bifurcation to bi-modality in the Melbourne temperature data set \cite{Hyndman1996Estimating-and-}. We use an extended version of the data set\footnote{Melbourne temperature data 1955-2007, provided by the Bureau of Meteorology, Victorian Climate Services Centre, Melbourne.} and analyse the day by day difference in temperature   at 15h (the daily report reference time) conditioned on today's temperature and pressure at the reference time.  The shorth plot view is in figure \ref{fig:melbournet}. The full picture reveals a cusp-type bifurcation. Figure \ref{fig:melbourne} shows the shorth plot for the temperature difference at 15h (the daily report reference time) to next day's temperature, conditioned on today's temperature and pressure. It reveals the modality split as well as the skewness which is pressure dependent.
 <<fig=true, echo=FALSE,label=MelbourneT, height=4, width=12, include=FALSE>>=
 melbourne3 <- data.frame(read.csv("/data/melbourne/temp v pressure 3 hourly intervals.csv"))
 dt<-as.POSIXlt(melbourne3[,1])#lenght 9??
@@ -788,7 +788,7 @@ par(oldpar)
 %\caption{Eruption durations of the Old Faithful geyser: density estimation (R defaults)}\label{fig:faithfuldens}
 %\end{figure}%
 \caption{Shorth plot at coverage levels $\alpha =0.125,0.25,0.5,0.75,  0.875$ for Melbourne day by day temperature difference at 15:00h conditioned at today's temperature. 
-A bifurcation to bimodality occurs at high temperatures.}\label{fig:melbournet}\end{figure}
+A bifurcation to bi-modality occurs at high temperatures.}\label{fig:melbournet}\end{figure}
 
 <<fig=true, echo=FALSE,label=Melbourne, height=12, width=12, include=FALSE>>=
 
@@ -865,7 +865,7 @@ For comparison, we add the silhouette plot suggested in \cite{dwmgs91jasa} as fi
 %
 \subsection{Hartigan's Hat}
 %
-This example is a mixture in proportions $3:2:3$  of a uniform on $\left(0,\frac{1}{4}\right)$, on $\left(\frac{1}{4}, \frac{3}{4} \right)$, and on $\left(\frac{3}{4}, 1 \right)$ used in \cite{Hartigan1985The-dip-test-of} to illustrate the dip test of unimodality. See figure \ref{fig: hhat}. For a general analysis, it is a challenge because it combines bimodality with flat parts in the distribution, and a relatively low density in the ``dip''. Only $25\%$ of the distribution fall in the ``dip'', and thus it must be hidden in higher coverages for the shorth plot.
+This example is a mixture in proportions $3:2:3$  of a uniform on $\left(0,\frac{1}{4}\right)$, on $\left(\frac{1}{4}, \frac{3}{4} \right)$, and on $\left(\frac{3}{4}, 1 \right)$ used in \cite{Hartigan1985The-dip-test-of} to illustrate the dip test of uni-modality. See figure \ref{fig: hhat}. For a general analysis, it is a challenge because it combines bi-modality with flat parts in the distribution, and a relatively low density in the ``dip''. Only $25\%$ of the distribution fall in the ``dip'', and thus it must be hidden in higher coverages for the shorth plot.
 
 In this situation, kernel density estimation performs poorly, since it is heavily degraded by boundary effects which cannot cope with the flat parts of the distribution. The shorth plot hints at the flat parts on the outside, but has difficulties identifying the flat middle part.
 %
@@ -928,13 +928,13 @@ An open question is whether the shorth length approach can be carried over to a 
 The shorth plot is related to kernel density estimation with variable bandwidth. It can be seen as a $k$-nearest neighbour approach. But in contrast to density estimation, it focusses on a concentration functional. Density is an infinitesimal concept. Mass concentration however is a local concept, but not an infinitesimal concept. As a consequence, density has no empirical counterpart, whereas mass concentration has. This makes the shorth length easier to handle for data analytical purposes.
 
 \gsnote{added 20071028}
-The shorth plot combines information on a series of coverage levels. For smoothed density estimators, it would be necessary to use a series of bandwiths. But even using  a series of bandwiths, the density estimators would not easily reveal the features which are apparent in the shorth plot.
+The shorth plot combines information on a series of coverage levels. For smoothed density estimators, it would be necessary to use a series of bandwidths. But even using  a series of bandwidths, the density estimators would not easily reveal the features which are apparent in the shorth plot.
 
 The relation to mass concentration is shared with the silhouette and the excess density plot  (\cite{dwmgs91jasa}) or Hyndman's highest density regions (\cite{Hyndman1996Computing-and-G}). The view however is complementary. Silhouette and the excess density focus on concentration, but the shorth on local spread. Silhouette and the excess density  target at detecting modality and are model based for a global model (e.g., unimodal vs. bimodal). The shorth however has a local perspective, and is model independent.
 
 P. A. and J. W. Tukey suggested a ``balloon plot'' in \cite{Tukey1981Data-Driven-Vie} (in \cite{Barnett1981Looking-at-mult}, reprinted in \cite{Tukey1988collected-V}). This is most closely related to the shorth plot. The main difference is that the balloons are centred at data points. The shorth plot does not use this centring, thus avoiding unnecessary random fluctuation.
 
-The SIzer approach by Chaudhuri and Marron \cite{Chaudhuri1999SiZer-for-Explo} is related in spirit to the shorth plot. It tries to present a multiscale representation for smoothing while controlling the artifacts of smoothing by going to a probability scale. The shorth plot avoids the initial smoothing step and is strictly data based.
+The SIzer approach by Chaudhuri and Marron \cite{Chaudhuri1999SiZer-for-Explo} is related in spirit to the shorth plot. It tries to present a multiscale representation for smoothing while controlling the artefacts of smoothing by going to a probability scale. The shorth plot avoids the initial smoothing step and is strictly data based.
 
 
 
@@ -942,6 +942,9 @@ The SIzer approach by Chaudhuri and Marron \cite{Chaudhuri1999SiZer-for-Explo} i
 The shorth plot is a means to investigate mass concentration. 
 It is easy to compute, avoids the bandwidth selection problems, and allows scanning for local as well
 as for global features of the distribution. The good rate of convergence of the shorth estimator makes it useful already at moderate sample sizes.
+
+\section{Addition}
+The theory of the shorth plot has been published in \cite{egs2010shorthplot}.The asymptotics of the short plot is analysed in \cite{egs2010shorthasymptotics}.
 
 %\section{}
 %\subsection{}
